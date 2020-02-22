@@ -2,6 +2,7 @@
 using DataAccessLayer.Interfaces;
 using System;
 using System.Collections;
+using System.Configuration;
 
 namespace DataAccessLayer.Models
 {
@@ -12,8 +13,8 @@ namespace DataAccessLayer.Models
         private Hashtable repositories = new Hashtable();
         public UnitOfWork()
         {
-            context = new GoogleApiEntities();
-        }
+			context = new GoogleApiEntities(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
+		}
         public IRepository<T> GetRepository<T>() where T : class
         {
             if (!repositories.Contains(typeof(T)))

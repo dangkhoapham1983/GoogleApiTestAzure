@@ -25,7 +25,7 @@ namespace BIVALEApiFunctions.AccountAdder
             HttpResponseMessage response;
             try
             {
-                var user = await req.Content.ReadAsAsync<User>();
+				var user = await req.Content.ReadAsAsync<User>();
                 if (user != null)
                 {
                     log.Info("Saving to database");

@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -64,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BILAVEModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GoogleApiEntitiesConfig.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>BILAVEModel.tt</DependentUpon>
     </Compile>
@@ -80,7 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Models\BILAVEModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BILAVEModel.Designer.cs</LastGenOutput>
