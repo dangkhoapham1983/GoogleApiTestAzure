@@ -9,9 +9,9 @@ using DataAccessLayer.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using UnitOfWorkExample.Configs;
+using BIVALEApiFunctions.Configs;
 
-namespace UnitOfWorkExample.AccountAdder
+namespace BIVALEApiFunctions.AccountAdder
 {
     [DependencyInjectionConfig(typeof(AutofacConfig))]
     public static class AccountAdder
@@ -19,7 +19,7 @@ namespace UnitOfWorkExample.AccountAdder
         [FunctionName("AccountAdder")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, 
                                                           TraceWriter log,
-                                                          [Inject]IUnitOfWork unitOfWork)
+                                                          [Inject]IUnitOfWork BIVALEApiFunctions)
         {
             log.Info("Received new account request");
             HttpResponseMessage response;
@@ -29,9 +29,9 @@ namespace UnitOfWorkExample.AccountAdder
                 if (user != null)
                 {
                     log.Info("Saving to database");
-                    var userRepo = unitOfWork.GetRepository<User>();
+                    var userRepo = BIVALEApiFunctions.GetRepository<User>();
                     userRepo.Insert(user);
-                    unitOfWork.Save();
+                    BIVALEApiFunctions.Save();
                     response = req.CreateResponse(HttpStatusCode.OK);
                 }
                 else

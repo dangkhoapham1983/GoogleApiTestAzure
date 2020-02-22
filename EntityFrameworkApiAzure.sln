@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27205.2004
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{FA7573E3-CBFC-48DA-BED8-A3DC1D6DD011}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWorkExample", "UnitOfWorkExample\UnitOfWorkExample.csproj", "{EEA57C81-5B24-475C-A033-7416D47C08D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIVALEApiFunctions", "BIVALEApiFunctions\BIVALEApiFunctions.csproj", "{EEA57C81-5B24-475C-A033-7416D47C08D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionExampleTests", "DependencyInjectionExampleTests\DependencyInjectionExampleTests.csproj", "{1E5339B4-8275-4BF2-8073-5C40C71E8131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionTests", "DependencyInjectionTests\DependencyInjectionTests.csproj", "{1E5339B4-8275-4BF2-8073-5C40C71E8131}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

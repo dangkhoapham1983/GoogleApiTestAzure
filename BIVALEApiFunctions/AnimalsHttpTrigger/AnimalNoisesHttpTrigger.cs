@@ -4,13 +4,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using AzureFunctions.Autofac;
-using UnitOfWorkExample.Interfaces;
+using BIVALEApiFunctions.Interfaces;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using UnitOfWorkExample.Configs;
+using BIVALEApiFunctions.Configs;
 
-namespace UnitOfWorkExample.AnimalsHttpTrigger
+namespace BIVALEApiFunctions.AnimalsHttpTrigger
 {
     [DependencyInjectionConfig(typeof(AutofacConfig))]
     public static class AnimalNoisesHttpTrigger

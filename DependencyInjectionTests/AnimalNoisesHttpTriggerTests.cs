@@ -1,12 +1,12 @@
-using UnitOfWorkExample.AnimalsHttpTrigger;
-using UnitOfWorkExample.Interfaces;
-using UnitOfWorkExample.Models;
+using BIVALEApiFunctions.AnimalsHttpTrigger;
+using BIVALEApiFunctions.Interfaces;
+using BIVALEApiFunctions.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace UnitOfWorkExampleTests
+namespace UnitOfWorkTests
 {
     [TestClass]
     public class AnimalNoisesHttpTriggerTests

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitOfWorkExample\UnitOfWorkExample.csproj" />
+    <ProjectReference Include="..\BIVALEApiFunctions\BIVALEApiFunctions.csproj" />
   </ItemGroup>
 
 </Project>

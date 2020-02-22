@@ -2,10 +2,10 @@
 using AzureFunctions.Autofac.Configuration;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
-using UnitOfWorkExample.Interfaces;
-using UnitOfWorkExample.Models;
+using BIVALEApiFunctions.Interfaces;
+using BIVALEApiFunctions.Models;
 
-namespace UnitOfWorkExample.Configs
+namespace BIVALEApiFunctions.Configs
 {
     public class AutofacConfig
     {

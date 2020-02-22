@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitOfWorkExample.Interfaces
+namespace BIVALEApiFunctions.Interfaces
 {
     public interface IAnimal
     {

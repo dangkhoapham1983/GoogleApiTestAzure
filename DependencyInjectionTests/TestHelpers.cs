@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Hosting;
 
-namespace UnitOfWorkExampleTests
+namespace UnitOfWorkTests
 {
     public class TestHelpers
     {
