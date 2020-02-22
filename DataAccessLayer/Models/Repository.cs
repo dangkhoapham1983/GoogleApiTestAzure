@@ -11,10 +11,10 @@ namespace DataAccessLayer.Helpers
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        internal GoogleApiTestEntities context;
+        internal GoogleApiEntities context;
         internal DbSet<TEntity> dbSet;
 
-        public Repository(GoogleApiTestEntities context)
+        public Repository(GoogleApiEntities context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

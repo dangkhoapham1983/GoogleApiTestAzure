@@ -49,9 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Account.cs">
-      <DependentUpon>BILAVEModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BILAVEModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

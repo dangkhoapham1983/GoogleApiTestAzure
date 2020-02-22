@@ -13,10 +13,10 @@ namespace DataAccessLayer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GoogleApiTestEntities : DbContext
+    public partial class GoogleApiEntities : DbContext
     {
-        public GoogleApiTestEntities()
-            : base("name=GoogleApiTestEntities")
+        public GoogleApiEntities()
+            : base("name=GoogleApiEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace DataAccessLayer.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<User> Users { get; set; }

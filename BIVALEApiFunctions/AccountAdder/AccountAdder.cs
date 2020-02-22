@@ -19,7 +19,7 @@ namespace BIVALEApiFunctions.AccountAdder
         [FunctionName("AccountAdder")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, 
                                                           TraceWriter log,
-                                                          [Inject]IUnitOfWork BIVALEApiFunctions)
+                                                          [Inject]IUnitOfWork unitOfWork)
         {
             log.Info("Received new account request");
             HttpResponseMessage response;
@@ -29,9 +29,9 @@ namespace BIVALEApiFunctions.AccountAdder
                 if (user != null)
                 {
                     log.Info("Saving to database");
-                    var userRepo = BIVALEApiFunctions.GetRepository<User>();
+                    var userRepo = unitOfWork.GetRepository<User>();
                     userRepo.Insert(user);
-                    BIVALEApiFunctions.Save();
+					unitOfWork.Save();
                     response = req.CreateResponse(HttpStatusCode.OK);
                 }
                 else

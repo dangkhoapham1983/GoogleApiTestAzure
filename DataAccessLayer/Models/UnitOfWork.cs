@@ -7,12 +7,12 @@ namespace DataAccessLayer.Models
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private GoogleApiTestEntities context;
+        private GoogleApiEntities context;
 
         private Hashtable repositories = new Hashtable();
         public UnitOfWork()
         {
-            context = new GoogleApiTestEntities();
+            context = new GoogleApiEntities();
         }
         public IRepository<T> GetRepository<T>() where T : class
         {
