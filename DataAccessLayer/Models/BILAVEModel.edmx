@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GoogleApiTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountMapping">
+          <Key>
+            <PropertyRef Name="Accounts_AccountId" />
+            <PropertyRef Name="Users_UserId" />
+          </Key>
+          <Property Name="Accounts_AccountId" Type="int" Nullable="false" />
+          <Property Name="Users_UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HistoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Node" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Permission" Type="nvarchar" MaxLength="50" />
+          <Property Name="NodePath" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SSN" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccountMapping_Account">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountMapping" Type="Self.AccountMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="AccountMapping">
+              <PropertyRef Name="Accounts_AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountMapping_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AccountMapping" Type="Self.AccountMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AccountMapping">
+              <PropertyRef Name="Users_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GoogleApiTestModelStoreContainer">
+          <EntitySet Name="AccountMapping" EntityType="Self.AccountMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountMapping_Account" Association="Self.FK_AccountMapping_Account">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountMapping" EntitySet="AccountMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountMapping_User" Association="Self.FK_AccountMapping_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccountMapping" EntitySet="AccountMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GoogleApiTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.AccountMapping" FromRole="Accounts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HistoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Node" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NodePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SSN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.AccountMapping" FromRole="Users" ToRole="Accounts" />
+        </EntityType>
+        <Association Name="AccountMapping">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="GoogleApiTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Histories" EntityType="Self.History" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="AccountMapping" Association="Self.AccountMapping">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GoogleApiTestModelStoreContainer" CdmEntityContainer="GoogleApiTestEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="GoogleApiTestModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="GoogleApiTestModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HistoryName" ColumnName="HistoryName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Node" ColumnName="Node" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="GoogleApiTestModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+                <ScalarProperty Name="NodePath" ColumnName="NodePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GoogleApiTestModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AccountMapping" TypeName="GoogleApiTestModel.AccountMapping" StoreEntitySet="AccountMapping">
+            <EndProperty Name="Accounts">
+              <ScalarProperty Name="AccountId" ColumnName="Accounts_AccountId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="Users_UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
