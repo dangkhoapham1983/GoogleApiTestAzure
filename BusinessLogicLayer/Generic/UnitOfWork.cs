@@ -1,10 +1,11 @@
-﻿using DataAccessLayer.Helpers;
-using DataAccessLayer.Interfaces;
+﻿using BusinessLogicLayer.Generic;
+using BusinessLogicLayer.Interfaces;
+using DataAccessLayer.Models;
 using System;
 using System.Collections;
 using System.Configuration;
 
-namespace DataAccessLayer.Models
+namespace BusinessLogicLayer.Generic
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {

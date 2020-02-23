@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Interfaces;
+﻿using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Helpers
+namespace BusinessLogicLayer.Generic
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

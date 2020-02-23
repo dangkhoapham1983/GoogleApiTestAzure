@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Interfaces
+namespace BusinessLogicLayer.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

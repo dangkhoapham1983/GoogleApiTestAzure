@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIVALEApiFunctions", "BIVAL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionTests", "DependencyInjectionTests\DependencyInjectionTests.csproj", "{1E5339B4-8275-4BF2-8073-5C40C71E8131}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{D1496A5A-26CF-4BAE-9377-2FDE2C737102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1E5339B4-8275-4BF2-8073-5C40C71E8131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5339B4-8275-4BF2-8073-5C40C71E8131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5339B4-8275-4BF2-8073-5C40C71E8131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1496A5A-26CF-4BAE-9377-2FDE2C737102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1496A5A-26CF-4BAE-9377-2FDE2C737102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1496A5A-26CF-4BAE-9377-2FDE2C737102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1496A5A-26CF-4BAE-9377-2FDE2C737102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
