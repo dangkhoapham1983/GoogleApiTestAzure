@@ -20,9 +20,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AccountAdder\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
+    <ProjectReference Include="..\DataTransferObjectLayer\DataTransferObjectLayer.csproj" />
   </ItemGroup>
 </Project>

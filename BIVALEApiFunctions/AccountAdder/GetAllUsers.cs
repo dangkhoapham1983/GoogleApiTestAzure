@@ -10,14 +10,16 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using BIVALEApiFunctions.Configs;
 using DataTransferObjectLayer;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace BIVALEApiFunctions.AccountAdder
 {
     [DependencyInjectionConfig(typeof(AutofacConfig))]
-    public static class AccountAdder
-    {
-        [FunctionName("AccountAdder")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, 
+    public static class GetAllUsers
+	{
+        [FunctionName("GetAllUsers")]
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequestMessage req, 
                                                           TraceWriter log,
                                                           [Inject]IUserServices userServices)
         {
@@ -25,20 +27,14 @@ namespace BIVALEApiFunctions.AccountAdder
             HttpResponseMessage response;
             try
             {
-				var user = await req.Content.ReadAsAsync<UserDTO>();
-                if (user != null)
-                {
-                    log.Info("Saving to database");
-					userServices.InsertUser(user);
-                    response = req.CreateResponse(HttpStatusCode.OK);
-                }
-                else
-                {
-                    var errorMessage = "Failed to parse user";
-                    log.Error(errorMessage);
-                    response = req.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
-                }
-            }
+				log.Info("Getting from database");
+				var myObj = userServices.GetUsers();
+				var jsonToReturn = JsonConvert.SerializeObject(myObj);
+				response = new HttpResponseMessage(HttpStatusCode.OK)
+				{
+					Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+				};
+			}
             catch (Exception e)
             {
                 log.Error(e.Message, e);
