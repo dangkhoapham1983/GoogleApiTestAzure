@@ -15,9 +15,9 @@ namespace BusinessLogicLayer.Services
 		{
 			get
 			{
-				if (this.userRepository == null)
+				if (userRepository == null)
 				{
-					this.userRepository = GetRepository<User>();
+					userRepository = GetRepository<User>();
 				}
 				return userRepository;
 			}
