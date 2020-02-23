@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Models
 {
-	[DbConfigurationType(typeof(MyConfiguration))]
+	[DbConfigurationType(typeof(BIVALIEConfiguration))]
 	partial class GoogleApiEntities
 	{
 		public GoogleApiEntities(string connection)
@@ -19,9 +19,9 @@ namespace DataAccessLayer.Models
 		}
 	}
 
-	public class MyConfiguration : DbConfiguration
+	public class BIVALIEConfiguration : DbConfiguration
 	{
-		public MyConfiguration()
+		public BIVALIEConfiguration()
 		{
 			SetProviderServices("System.Data.EntityClient",	SqlProviderServices.Instance);
 			SetDefaultConnectionFactory(new SqlConnectionFactory());
