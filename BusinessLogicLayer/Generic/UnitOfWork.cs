@@ -14,7 +14,8 @@ namespace BusinessLogicLayer.Generic
         private Hashtable repositories = new Hashtable();
         public UnitOfWork()
         {
-			context = DependencyInjector.Retrieve<GoogleApiEntities>(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
+			//context = DependencyInjector.Retrieve<GoogleApiEntities>(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
+			context = new GoogleApiEntities(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
 		}
         public IRepository<T> GetRepository<T>() where T : class
         {
