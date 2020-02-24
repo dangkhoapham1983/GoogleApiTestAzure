@@ -12,9 +12,10 @@ namespace BusinessLogicLayer.Mapping
 	{
 		public User Map(UserDTO obj)
 		{
-			//var config = DependencyInjector.Retrieve<MapperConfiguration>(cfg => cfg.CreateMap<UserDTO, User>());
-			//var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>());
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			User target = mapper.Map<User>(obj);
 			return target;
@@ -22,8 +23,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public UserDTO Map(User obj)
 		{
-			//var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>());
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<UserDTO>(obj);
 			return result;
@@ -31,7 +34,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public IEnumerable<User> MapList(IEnumerable<UserDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<IEnumerable<User>>(obj);
 			return result;
@@ -39,7 +45,11 @@ namespace BusinessLogicLayer.Mapping
 
 		public IEnumerable<UserDTO> MapList(IEnumerable<User> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
+
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<IEnumerable<UserDTO>>(obj);
 			return result;
@@ -47,7 +57,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public IList<User> MapList(IList<UserDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<IList<User>>(obj);
 			return result;
@@ -55,7 +68,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public IList<UserDTO> MapList(IList<User> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<IList<UserDTO>>(obj);
 			return result;
@@ -63,7 +79,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public ICollection<User> MapList(ICollection<UserDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<ICollection<User>>(obj);
 			return result;
@@ -71,7 +90,10 @@ namespace BusinessLogicLayer.Mapping
 
 		public ICollection<UserDTO> MapList(ICollection<User> obj)
 		{
-			var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+			var config = new MapperConfiguration(cfg => {
+				cfg.AllowNullCollections = true;
+				cfg.AddProfile(new MappingProfile());
+			});
 			var mapper = config.CreateMapper();
 			var result = mapper.Map<ICollection<UserDTO>>(obj);
 			return result;

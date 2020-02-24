@@ -11,12 +11,6 @@ namespace BusinessLogicLayer.Mapping
 		{
 			CreateMap<User, UserDTO>();
 			CreateMap<UserDTO, User>();
-			CreateMap<IList<User>, IList<UserDTO>>();
-			CreateMap<IList<UserDTO>, IList<User>>();
-			CreateMap<IEnumerable<User>, IEnumerable<UserDTO>>();
-			CreateMap<IEnumerable<UserDTO>, IEnumerable<User>>();
-			CreateMap<ICollection<User>, ICollection<UserDTO>>();
-			CreateMap<ICollection<UserDTO>, ICollection<User>>();
 		}
 	}
 }

@@ -35,14 +35,9 @@ namespace BusinessLogicLayer.Services
 
 		public IEnumerable<UserDTO> GetUsers()
 		{
-			UserMapper objUserMapper = DependencyInjector.Retrieve<UserMapper>();
-			IEnumerable<User> target = UserRepository.Get();
-			List<UserDTO> result = new List<UserDTO>();
-			foreach (var item in target)
-			{
-				result.Add(objUserMapper.Map(item));
-			}
-			
+			var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
+			var target = UserRepository.Get();
+			var result = objUserMapper.MapList(target);
 			return result;
 		}
 
