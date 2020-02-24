@@ -11,6 +11,8 @@ using Microsoft.Azure.WebJobs.Host;
 using BIVALEApiFunctions.Configs;
 using Newtonsoft.Json;
 using System.Text;
+using System.Collections.Generic;
+using DataTransferObjectLayer;
 
 namespace BIVALEApiFunctions.AccountAdder
 {
@@ -22,17 +24,22 @@ namespace BIVALEApiFunctions.AccountAdder
                                                           TraceWriter log,
                                                           [Inject]IUserServices userServices)
         {
-            log.Info("Received new account request");
-            HttpResponseMessage response;
+			var tcs = new TaskCompletionSource<IEnumerable<UserDTO>>();
+			log.Info("Received new account request");
+            HttpResponseMessage response = null;
             try
             {
 				log.Info("Getting from database");
-				var myObj = userServices.GetUsers();
-				var jsonToReturn = JsonConvert.SerializeObject(myObj);
-				response = new HttpResponseMessage(HttpStatusCode.OK)
+				await Task.Run(() =>
 				{
-					Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
-				};
+					var myObj = userServices.GetUsers();
+					var jsonToReturn = JsonConvert.SerializeObject(myObj);
+					response = new HttpResponseMessage(HttpStatusCode.OK)
+					{
+						Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+					};
+				});
+				
 			}
             catch (Exception e)
             {

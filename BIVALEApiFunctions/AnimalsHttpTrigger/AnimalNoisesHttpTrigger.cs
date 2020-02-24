@@ -19,7 +19,13 @@ namespace BIVALEApiFunctions.AnimalsHttpTrigger
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequestMessage req, TraceWriter log, [Inject]IAnimal animal)
         {
             log.Info("C# HTTP trigger function processed a request.");
-            return req.CreateResponse(HttpStatusCode.OK, animal.MakeNoise());
-        }
+			HttpResponseMessage response = null;
+			await Task.Run(() =>
+			{
+				response = req.CreateResponse(HttpStatusCode.OK, animal.MakeNoise());
+			});
+
+			return response;
+		}
     }
 }
