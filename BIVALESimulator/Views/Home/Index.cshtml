@@ -1,78 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Google Plus API";
+	ViewData["Title"] = "Home Page";
 }
 
 
-
-<div class="row">
-    <h2>Google+ Login / Sign in</h2>
-
-    <br />
-    <button class="btn btn-danger" id="googleplus">
-        Google+ API
-    </button>
-    <br />
-</div>
-
-
-@section Scripts{
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-    <script src="https://apis.google.com/js/api:client.js"></script>
-
-
-    <script>
-        var googleUser = {};
-        var startAppA = function () {
-            gapi.load('auth2', function () {
-                //Retrieve the singleton for the GoogleAuth library and set up the client.
-                auth2 = gapi.auth2.init({
-					client_id: '724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com',
-					secret_key: 'OLaWJI81VkdKlz0qUZfi0ojv',
-                    cookiepolicy: 'single_host_origin',
-                });
-                attachSignin(document.getElementById('googleplus'));
-            });
-        };
-
-        function attachSignin(element) {
-            auth2.attachClickHandler(element, {},
-                function (googleUser) {
-                    debugger;
-                    $(".se-pre-con").show();
-                    console.log(googleUser);
-                    var profiles = googleUser.getBasicProfile();
-                    var ReturnUrl = 'http://localhost:51013/Home/ReturnURL';
-
-                    //Crate A Bunch Of Object for Search
-                    var objData = {
-                        Email: profiles.getEmail(),
-                        LastName: profiles.getFamilyName(),
-                        FirstName: profiles.getGivenName(),
-                        GoogleID: profiles.getId(),
-                        ProfileURL: profiles.getName(),
-                    };
-
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("ReturnURL", "Home")',
-                        data: objData,
-                        datatype: "json",
-						success: function (data) {
-							console.log(data);
-							alert(data);
-							alert("Successfully Done");
-                        }
-                    });
-                    $(".se-pre-con").hide();
-
-                }, function (error) {
-                    alert(JSON.stringify(error, undefined, 2));
-                });
-        }
-    </script>
-
-    <script>startAppA();</script>
-
-
+<br />
+<h1>Google Integration</h1>
+<br />
+<h3>@ViewBag.Message</h3>
+<br />
+@using (Html.BeginForm("SyncToGoogle", "Home"))
+{
+	<input class="button" id="submit" type="submit" value="Login with Google" />
 }

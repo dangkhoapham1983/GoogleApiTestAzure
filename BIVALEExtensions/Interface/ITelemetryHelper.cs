@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BIVALEExtensions.Telemetry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVALEExtensions
+namespace BIVALEExtensions.Interface
 {
 	public interface ITelemetryHelper
 	{

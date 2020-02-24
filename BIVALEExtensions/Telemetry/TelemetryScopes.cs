@@ -1,4 +1,4 @@
-﻿namespace BIVALEExtensions
+﻿namespace BIVALEExtensions.Telemetry
 {
 	/// <summary>
 	/// The scopes applicable to telemetry represent grouping areas to help identify telemetry events.

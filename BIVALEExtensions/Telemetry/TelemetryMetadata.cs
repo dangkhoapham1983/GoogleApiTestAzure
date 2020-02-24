@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace BIVALEExtensions
+namespace BIVALEExtensions.Telemetry
 {
 	/// <summary>
 	/// A data object containing application level metadata for telemetry purposes.

@@ -7,8 +7,9 @@ using System.Diagnostics;
 using System.Collections.Concurrent;
 using Microsoft.Azure;
 using System.Globalization;
+using BIVALEExtensions.Interface;
 
-namespace BIVALEExtensions
+namespace BIVALEExtensions.Telemetry
 {
 	public class TelemetryHelper : ITelemetryHelper
 	{

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BIVALEExtensions.Telemetry;
+using BIVALEExtensions.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -46,7 +48,6 @@ namespace BIVALEExtensions
 			return ActionRequest(uri, RequestType.Delete, contentType, body);
 		}
 
-
 		private BaseResponse ActionRequest(string uri, RequestType requestType, ContentType contentType, string body = "")
 		{
 			HttpStatusCode responseStatus = HttpStatusCode.ExpectationFailed;
@@ -67,7 +68,6 @@ namespace BIVALEExtensions
 					client.Encoding = Encoding.UTF8;
 
 					client.Headers.Add("Ocp-Apim-Subscription-Key", _subscriptionKey);
-					//client.Headers.Add("Authorization", "OAuth eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJodHRwOi8vbGl2ZS5hcGkudmFsdWVyZXRhaWwuY29tL2lkZW50aXR5L2NsYWltcy90aXRsZSI6IiIsImZhbWlseV9uYW1lIjoiT2tvbnRhIiwiZ2l2ZW5fbmFtZSI6Ik1pdGNoIiwiaHR0cDovL2xpdmUuYXBpLnZhbHVlcmV0YWlsLmNvbS9pZGVudGl0eS9jbGFpbXMvdXNlcmlkIjoiMzQ2ODFBMjItQkVGRC00MTExLTlFNjgtMDZDQkY3MDI4RDc5IiwiaHR0cDovL2xpdmUuYXBpLnZhbHVlcmV0YWlsLmNvbS9pZGVudGl0eS9jbGFpbXMvbGFuZ3VhZ2UiOiJkZS1kZSIsImh0dHA6Ly9saXZlLmFwaS52YWx1ZXJldGFpbC5jb20vaWRlbnRpdHkvY2xhaW1zL3ZpbGxhZ2UiOiJaViIsImVtYWlsIjoibWl0Y2gyQGtvdGFuby5jb20iLCJodHRwOi8vbGl2ZS5hcGkudmFsdWVyZXRhaWwuY29tL2lkZW50aXR5L2NsYWltcy9vZHNpZCI6IiIsInJvbGUiOiJNZW1iZXIiLCJ1bmlxdWVfbmFtZSI6Im1pdGNoMkBrb3Rhbm8uY29tIiwiaXNzIjoiaHR0cHM6Ly92cmFwaWJmZnNpdC5jbG91ZGFwcC5uZXQvIiwiYXVkIjoiNGU4Y2U4NmE5YzkxNGRkOGE0MWMwOWUwNzA5ZWYyOTciLCJleHAiOjE0Nzk0NTQ4NTMsIm5iZiI6MTQ0Nzg5NzkxM30.CXZHo_g7qhiRkolEO-1fVD--XpjeZMUPTi08o1MrBB4");
 					switch (contentType)
 					{
 						case ContentType.FORM:

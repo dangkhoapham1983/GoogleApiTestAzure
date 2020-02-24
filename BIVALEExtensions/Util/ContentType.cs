@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVALEExtensions
+namespace BIVALEExtensions.Util
 {
-	public enum RequestType
+	public enum ContentType
 	{
-		Post,
-		Get,
-		Put,
-		Delete
+		XML,
+		TEXT,
+		FORM,
+		JSON
 	}
 }

@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Reflection;
 
-namespace BIVALEExtensions
+namespace BIVALEExtensions.Util
 {
-	class HTTPServices
+	public class HTTPServices
 	{
 		public static HttpStatusCode GetStatusCode(WebClient client, out HttpStatusCode statusDescription)
 		{
