@@ -1,19 +1,15 @@
-﻿using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Hosting;
 
 namespace UnitOfWorkTests
 {
-    public class TestHelpers
+	public class TestHelpers
     {
         public static HttpRequestMessage CreateGetRequest(string hostName = null, Dictionary<string, string> queryString = null)
         {

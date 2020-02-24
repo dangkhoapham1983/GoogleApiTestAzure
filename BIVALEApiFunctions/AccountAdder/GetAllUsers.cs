@@ -9,7 +9,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using BIVALEApiFunctions.Configs;
-using DataTransferObjectLayer;
 using Newtonsoft.Json;
 using System.Text;
 
