@@ -16,6 +16,8 @@ namespace DataAccessLayer.Models
 		public GoogleApiEntities(string connection)
 			: base(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString)
 		{
+			Configuration.LazyLoadingEnabled = true;
+			Configuration.ProxyCreationEnabled = true;
 		}
 	}
 
