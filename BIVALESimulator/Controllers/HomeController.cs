@@ -20,46 +20,17 @@ namespace BIVALESimulator.Controllers
         }
 
         [HttpPost]
-        public JsonResult ReturnURL(string Email, string FirstName, string LastName, string GoogleID, string ProfileURL)
+        public JsonResult ReturnURL(UserProfile data)
         {
 			//Do your code for Signin or Signup
-			var data = new UserProfile();
-			data.Email = Email;
-			data.FirstName = FirstName;
-			data.LastName = LastName;
-			data.GoogleID = GoogleID;
-			data.ProfileURL = ProfileURL;
-
-			//string[] scopes = new string[] { "https://mail.google.com/", "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
-
-			//UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-			//new ClientSecrets
-			//{
-			//	ClientId = WebConfigurationManager.AppSettings["GoogleClientID"],
-			//	ClientSecret = WebConfigurationManager.AppSettings["GoogleClientSecret"],
-			//},
-			// scopes,
-			// "user",
-			// CancellationToken.None).Result;
-
-			//if (credential.Token.IsExpired(credential.Flow.Clock))
-			//{
-			//	Console.WriteLine("The access token has expired, refreshing it");
-			//	if (credential.RefreshTokenAsync(CancellationToken.None).Result)
-			//	{
-			//		Console.WriteLine("The access token is now refreshed");
-			//	}
-			//	else
-			//	{
-			//		Console.WriteLine("The access token has expired but we can't refresh it :(");
-			//	}
-			//}
-			//else
-			//{
-			//	Console.WriteLine("The access token is OK, continue");
-			//}
-
-			return Json(JsonConvert.SerializeObject(data), JsonRequestBehavior.AllowGet);
+			data.ExpiredTime = DateTime.Now.AddSeconds(data.ExpiredIn);
+			if (IsExpired(data.ExpiredTime)){
+				return Json("Expired", JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(JsonConvert.SerializeObject(data), JsonRequestBehavior.AllowGet);
+			}
         }
 
 		[HttpPost]
@@ -79,6 +50,15 @@ namespace BIVALESimulator.Controllers
 				}
 			}
 			return Redirect("~/");
+		}
+
+		private bool IsExpired(DateTime obj)
+		{
+			if (obj < DateTime.Now)
+			{
+				return true;
+			}
+			return false;
 		}
 	}
 }

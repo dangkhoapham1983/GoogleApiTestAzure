@@ -12,6 +12,12 @@ namespace BIVALESimulator.Models
 		public string LastName { get; set; }
 		public string GoogleID { get; set; }
 		public string ProfileURL { get; set; }
+		public string AccessToken { get; set; }
+		public string Scope { get; set; }
+		public string TokenType { get; set; }
+		public int ExpiredIn { get; set; }
+		public long ExpiredAt { get; set; }
+		public DateTime ExpiredTime { get; set; }
 
 	}
 }
