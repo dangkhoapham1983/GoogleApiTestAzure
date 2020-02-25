@@ -225,6 +225,7 @@
     <Content Include="Scripts\gridmvc.lang.fr.js" />
     <Content Include="Scripts\gridmvc.min.js.map" />
     <Content Include="Grid.Mvc.Ajax.readme" />
+    <None Include="Properties\PublishProfiles\BIVALESimulator20200225032022 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
