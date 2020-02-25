@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true"
+  },
+  "ConnectionStrings": {
+    "GoogleApiEntities": {
+      "ConnectionString": "metadata=res://*/;provider=System.Data.SqlClient;provider connection string='data source=khoaphamlearning.database.windows.net;initial catalog=GoogleApiTest;user id=khoapham;password=123456789x@X;MultipleActiveResultSets=True;App=EntityFramework'",
+      "ProviderName": "System.Data.EntityClient"
+    }
+  }
+}
