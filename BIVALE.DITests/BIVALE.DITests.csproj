@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BIVALEApiFunctions\BIVALE.ApiFunctions.csproj" />
+    <ProjectReference Include="..\BIVALE.ApiFunctions\BIVALE.ApiFunctions.csproj" />
   </ItemGroup>
 
 </Project>

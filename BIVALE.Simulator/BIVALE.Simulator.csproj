@@ -280,11 +280,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BIVALEExtensions\BIVALE.Extensions.csproj">
+    <ProjectReference Include="..\BIVALE.Extensions\BIVALE.Extensions.csproj">
       <Project>{cd59def1-88ab-4b2a-a36e-38b91821bd91}</Project>
       <Name>BIVALE.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataTransferObjectLayer\BIVALE.DTO.csproj">
+    <ProjectReference Include="..\BIVALE.DTO\BIVALE.DTO.csproj">
       <Project>{F1436A18-B9EE-431F-9F9D-4FAA9E8BC959}</Project>
       <Name>BIVALE.DTO</Name>
     </ProjectReference>
