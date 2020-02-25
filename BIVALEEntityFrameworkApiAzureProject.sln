@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIVALE.Simulator", "BIVALE.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIVALE.Extensions", "BIVALE.Extensions\BIVALE.Extensions.csproj", "{CD59DEF1-88AB-4B2A-A36E-38B91821BD91}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BIVALE.DBSchema", "BIVALE.DBSchema\BIVALE.DBSchema.sqlproj", "{AF274344-85D2-436E-9C82-357580908B8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,12 @@ Global
 		{CD59DEF1-88AB-4B2A-A36E-38B91821BD91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD59DEF1-88AB-4B2A-A36E-38B91821BD91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD59DEF1-88AB-4B2A-A36E-38B91821BD91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF274344-85D2-436E-9C82-357580908B8A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
