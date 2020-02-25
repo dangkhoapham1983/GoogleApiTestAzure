@@ -12,7 +12,7 @@ namespace BIVALEExtensions
 {
 	public sealed class ApiCalls
 	{
-		private static readonly ApiCalls _instance = new ApiCalls(Config.SubscriptionKey);
+		private static readonly ApiCalls _instance = new ApiCalls(Configuration.SubscriptionKey);
 
 		public static ApiCalls Instance
 		{
@@ -63,7 +63,7 @@ namespace BIVALEExtensions
 				string response = "";
 				using (client)
 				{
-					client.Headers["User-Agent"] = Config.UserAgent;
+					client.Headers["User-Agent"] = Configuration.UserAgent;
 					client.Headers[HttpRequestHeader.ContentType] = "application/xml";
 					client.Encoding = Encoding.UTF8;
 
@@ -126,7 +126,7 @@ namespace BIVALEExtensions
 					apiResponse.ResponseBody = response;
 					apiResponse.ResponseHeaders = this.GetResponseHeaders(client.ResponseHeaders);
 
-					this.CaptureFaultTelemetry(apiResponse, uri, requestType, contentType);
+					//this.CaptureFaultTelemetry(apiResponse, uri, requestType, contentType);
 				}
 			}
 			catch (WebException e)
@@ -141,7 +141,7 @@ namespace BIVALEExtensions
 					apiResponse.Response.StatusCode = httpResp.StatusCode;
 				}
 
-				this.CaptureExceptionTelemetry(e, apiResponse, uri, requestType, contentType);
+				//this.CaptureExceptionTelemetry(e, apiResponse, uri, requestType, contentType);
 			}
 
 			return apiResponse;

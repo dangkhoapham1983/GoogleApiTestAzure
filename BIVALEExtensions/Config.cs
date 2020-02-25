@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace BIVALEExtensions
 {
-	public static class Config
+	public static class Configuration
 	{
 		// NOTE: for settings that may need to be modified after deployment, we use CloudConfigurationManager. 
 		public static string SubscriptionKey = CloudConfigurationManager.GetSetting("IMGroupAPI.SubscriptionKey");

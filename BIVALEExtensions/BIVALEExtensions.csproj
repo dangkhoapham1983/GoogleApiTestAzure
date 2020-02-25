@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights, Version=2.13.1.12554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.13.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -68,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiCalls.cs" />
+    <Compile Include="Interface\ISocialNetworkServices.cs" />
+    <Compile Include="Services\SocialNetworkServices.cs" />
     <Compile Include="Util\BaseResponse.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Util\ContentType.cs" />
@@ -79,10 +84,18 @@
     <Compile Include="Telemetry\TelemetryMetadata.cs" />
     <Compile Include="Telemetry\TelemetryScopes.cs" />
     <Compile Include="Telemetry\TelemetrySeverity.cs" />
+    <Compile Include="Util\UserResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTransferObjectLayer\DataTransferObjectLayer.csproj">
+      <Project>{f1436a18-b9ee-431f-9f9d-4faa9e8bc959}</Project>
+      <Name>DataTransferObjectLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

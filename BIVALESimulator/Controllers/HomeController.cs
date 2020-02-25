@@ -9,29 +9,74 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using BIVALESimulator.Models;
+using BIVALEExtensions.Services;
+using DataTransferObjectLayer;
+using BIVALESimulator.Helpers;
 
 namespace BIVALESimulator.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+		private const string GRID_PARTIAL_PATH = "~/Views/Home/_IndexGrid.cshtml";
+
+		private IGridMvcHelper gridMvcHelper;
+
+		public HomeController()
+		{
+			this.gridMvcHelper = new GridMvcHelper();
+		}
+
+		public ActionResult Index()
         {
-            return View();
+			return View(new List<UserDTO>());
         }
 
-        [HttpPost]
-        public JsonResult ReturnURL(UserProfile data)
+		[HttpPost]
+        public ActionResult ReturnURL(UserProfile data)
         {
 			//Do your code for Signin or Signup
 			data.ExpiredTime = DateTime.Now.AddSeconds(data.ExpiredIn);
-			if (IsExpired(data.ExpiredTime)){
+
+			if (IsExpired(data.ExpiredTime))
+			{
 				return Json("Expired", JsonRequestBehavior.AllowGet);
 			}
 			else
 			{
-				return Json(JsonConvert.SerializeObject(data), JsonRequestBehavior.AllowGet);
+				var obj = new SocialNetworkServices();
+				List<UserDTO> result = obj.GetUserDTO();
+				//return PartialView(result);
+				return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
+
+
+				//var obj = new SocialNetworkServices();
+				//var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.FirstName);
+				//var grid = this.gridMvcHelper.GetAjaxGrid(result);
+
+				//return PartialView(GRID_PARTIAL_PATH, grid);
 			}
-        }
+		}
+
+		[ChildActionOnly]
+		public ActionResult GetGrid()
+		{
+			var obj = new SocialNetworkServices();
+			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.FirstName);
+			var grid = this.gridMvcHelper.GetAjaxGrid(result);
+
+			return PartialView(GRID_PARTIAL_PATH, grid);
+		}
+
+		[HttpGet]
+		public ActionResult GridPager(int? page)
+		{
+			var obj = new SocialNetworkServices();
+			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.FirstName);
+			var grid = this.gridMvcHelper.GetAjaxGrid(result, page);
+			object jsonData = this.gridMvcHelper.GetGridJsonData(grid, GRID_PARTIAL_PATH, this);
+
+			return Json(jsonData, JsonRequestBehavior.AllowGet);
+		}
 
 		[HttpPost]
 		public ActionResult SyncToGoogle()

@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IEnumerable<DataTransferObjectLayer.UserDTO>
+@using GridMvc.Html
+
+@{
 	ViewBag.Title = "Google Plus API";
 }
-
-
 
 <div class="row">
 	<h2>Google+ Login / Sign in</h2>
@@ -12,6 +13,18 @@
 		Google+ API
 	</button>
 	<br />
+
+	<h2>Details</h2>
+
+	<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+	<div class="code-cut">
+		<div id="empList">
+		</div>
+		@*@Html.Action("GetGrid")*@
+	</div>
 </div>
 
 
@@ -64,9 +77,10 @@
                         data: objData,
                         datatype: "json",
 						success: function (data) {
-							console.log(data);
-							alert(data);
-							alert("Successfully Done");
+							//console.log(data);
+							//alert(data);
+							//alert("Successfully Done");
+							$("#empList").html(data); ;
                         }
                     });
                     $(".se-pre-con").hide();
@@ -78,6 +92,4 @@
 	</script>
 
 	<script>startAppA();</script>
-
-
 }

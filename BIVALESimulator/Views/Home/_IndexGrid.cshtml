@@ -1,0 +1,17 @@
+﻿@*@model Grid.Mvc.Ajax.GridExtensions.AjaxGrid<DataTransferObjectLayer.UserDTO>*@
+@model IEnumerable<DataTransferObjectLayer.UserDTO>
+@using GridMvc.Html
+@using GridMvc.Sorting
+
+@Html.Grid(Model).Columns(columns =>
+							{
+								columns.Add(c => c.UserId).Titled("UserId").Filterable(true);
+								columns.Add(c => c.LastName).Titled("LastName").Filterable(true);
+								columns.Add(c => c.FirstName).Titled("FirstName").Filterable(true);
+								columns.Add()
+								.Encoded(false)
+								.Sanitized(false)
+								.SetWidth(30)
+								.RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.UserId }));
+
+							}).WithPaging(10).Sortable(true)
