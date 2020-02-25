@@ -77,13 +77,8 @@
     <Compile Include="Config.cs" />
     <Compile Include="Util\ContentType.cs" />
     <Compile Include="Util\HTTPServices.cs" />
-    <Compile Include="Interface\ITelemetryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\RequestType.cs" />
-    <Compile Include="Telemetry\TelemetryHelper.cs" />
-    <Compile Include="Telemetry\TelemetryMetadata.cs" />
-    <Compile Include="Telemetry\TelemetryScopes.cs" />
-    <Compile Include="Telemetry\TelemetrySeverity.cs" />
     <Compile Include="Util\UserResponse.cs" />
   </ItemGroup>
   <ItemGroup>

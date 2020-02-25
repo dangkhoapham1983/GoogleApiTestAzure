@@ -1,5 +1,4 @@
-﻿using BIVALE.Extensions.Telemetry;
-using BIVALE.Extensions.Util;
+﻿using BIVALE.Extensions.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,8 +124,6 @@ namespace BIVALE.Extensions
 					apiResponse.Response.StatusCode = HTTPServices.GetStatusCode(client, out responseStatus);
 					apiResponse.ResponseBody = response;
 					apiResponse.ResponseHeaders = this.GetResponseHeaders(client.ResponseHeaders);
-
-					//this.CaptureFaultTelemetry(apiResponse, uri, requestType, contentType);
 				}
 			}
 			catch (WebException e)
@@ -140,8 +137,6 @@ namespace BIVALE.Extensions
 					// NOTE: response codes are more reliably extracted from the web exception.
 					apiResponse.Response.StatusCode = httpResp.StatusCode;
 				}
-
-				//this.CaptureExceptionTelemetry(e, apiResponse, uri, requestType, contentType);
 			}
 
 			return apiResponse;
@@ -162,28 +157,6 @@ namespace BIVALE.Extensions
 			}
 
 			return result;
-		}
-
-		private void CaptureExceptionTelemetry(Exception e, BaseResponse response, string uri, RequestType requestType, ContentType contentType)
-		{
-			// NOTE: capture everything we can about this error, including the response code where applicable.
-			var props = GetApiProperties(response, uri, requestType, contentType);
-			TelemetryHelper.Current.TrackException(e, props);
-			TelemetryHelper.Current.TrackEvent("DIAPI:Error", props);
-		}
-
-		private void CaptureFaultTelemetry(BaseResponse response, string uri, RequestType requestType, ContentType contentType)
-		{
-			// NOTE: we now track every request/response, volumes are relatively low and throttle protected with the likes of recapture/af tokens.
-			var code = (int)response.Response.StatusCode;
-			var props = GetApiProperties(response, uri, requestType, contentType);
-			if (code >= 200 && code < 300)
-			{
-				TelemetryHelper.Current.TrackEvent("DIAPI:Ok", props);
-				return;
-			}
-
-			TelemetryHelper.Current.TrackEvent("DIAPI:Fault", props);
 		}
 
 		private Dictionary<string, string> GetApiProperties(BaseResponse response, string uri, RequestType requestType,
