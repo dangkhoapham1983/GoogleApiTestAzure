@@ -1,4 +1,4 @@
-﻿using BIVALESimulator.Serivces;
+﻿using BIVALE.Simulator.Serivces;
 using Google.Apis.Auth.OAuth2;
 using Newtonsoft.Json;
 using System;
@@ -8,12 +8,12 @@ using System.Threading;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
-using BIVALESimulator.Models;
-using BIVALEExtensions.Services;
-using DataTransferObjectLayer;
-using BIVALESimulator.Helpers;
+using BIVALE.Simulator.Models;
+using BIVALE.Extensions.Services;
+using BIVALE.DTO;
+using BIVALE.Simulator.Helpers;
 
-namespace BIVALESimulator.Controllers
+namespace BIVALE.Simulator.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,4 +1,4 @@
-﻿namespace BIVALEExtensions.Telemetry
+﻿namespace BIVALE.Extensions.Telemetry
 {
 	/// <summary>
 	/// Severity level for app insights used as an abstraction to keep calling code tidy.

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Models
+namespace BIVALE.DAL.Models
 {
 	[DbConfigurationType(typeof(BIVALIEConfiguration))]
 	partial class GoogleApiEntities

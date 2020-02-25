@@ -1,4 +1,4 @@
-﻿namespace DataTransferObjectLayer
+﻿namespace BIVALE.DTO
 {
 	public class UserDTO
 	{

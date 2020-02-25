@@ -1,5 +1,5 @@
-﻿using BIVALEExtensions.Telemetry;
-using BIVALEExtensions.Util;
+﻿using BIVALE.Extensions.Telemetry;
+using BIVALE.Extensions.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVALEExtensions
+namespace BIVALE.Extensions
 {
 	public sealed class ApiCalls
 	{

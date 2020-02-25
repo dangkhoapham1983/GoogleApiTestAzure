@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BIVALESimulator.Serivces
+namespace BIVALE.Simulator.Serivces
 {
 	public class AuthorizationCodeMvcAppFactory
 	{

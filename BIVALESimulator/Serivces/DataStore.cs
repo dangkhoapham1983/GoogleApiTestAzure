@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace BIVALESimulator.Serivces
+namespace BIVALE.Simulator.Serivces
 {
 	public class DataStore : IDataStore
 	{

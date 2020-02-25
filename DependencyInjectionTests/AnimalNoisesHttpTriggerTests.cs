@@ -1,12 +1,12 @@
-using BIVALEApiFunctions.AnimalsHttpTrigger;
-using BIVALEApiFunctions.Interfaces;
-using BIVALEApiFunctions.Models;
+using BIVALE.ApiFunctions.AnimalsHttpTrigger;
+using BIVALE.ApiFunctions.Interfaces;
+using BIVALE.ApiFunctions.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace UnitOfWorkTests
+namespace BIVALE.DITests
 {
     [TestClass]
     public class AnimalNoisesHttpTriggerTests

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitOfWorkTests
+namespace BIVALE.DITests
 {
     public class TraceWriterStub : TraceWriter
     {

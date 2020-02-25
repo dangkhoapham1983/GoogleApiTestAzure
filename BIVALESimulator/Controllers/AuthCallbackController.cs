@@ -1,4 +1,4 @@
-﻿using BIVALESimulator.Serivces;
+﻿using BIVALE.Simulator.Serivces;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Auth.OAuth2.Responses;
 using System;
@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 
-namespace BIVALESimulator.Controllers
+namespace BIVALE.Simulator.Controllers
 {
 	public class AuthCallbackController : Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController
 	{

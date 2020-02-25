@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BIVALESimulator.Models
+namespace BIVALE.Simulator.Models
 {
 	public class UserProfile
 	{

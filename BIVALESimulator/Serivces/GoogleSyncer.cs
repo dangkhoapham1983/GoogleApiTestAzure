@@ -7,7 +7,7 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using static Google.Apis.Auth.OAuth2.Web.AuthorizationCodeWebApp;
 
-namespace BIVALESimulator.Serivces
+namespace BIVALE.Simulator.Serivces
 {
 	public class GoogleSyncer
 	{

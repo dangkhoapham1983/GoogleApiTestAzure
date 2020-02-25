@@ -7,7 +7,7 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Hosting;
 
-namespace UnitOfWorkTests
+namespace BIVALE.DITests
 {
 	public class TestHelpers
     {

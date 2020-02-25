@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DataAccessLayer.Models;
-using DataTransferObjectLayer;
+using BIVALE.DAL.Models;
+using BIVALE.DTO;
 using System.Collections.Generic;
 
-namespace BusinessLogicLayer.Mapping
+namespace BIVALE.BLL.Mapping
 {
 	public class MappingProfile : Profile
 	{

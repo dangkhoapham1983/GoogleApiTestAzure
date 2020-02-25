@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogicLayer.Interfaces
+namespace BIVALE.BLL.Interfaces
 {
 	public interface IMapper<DTO, TEntity>
 	{

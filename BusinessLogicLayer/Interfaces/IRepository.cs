@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace BusinessLogicLayer.Interfaces
+namespace BIVALE.BLL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {

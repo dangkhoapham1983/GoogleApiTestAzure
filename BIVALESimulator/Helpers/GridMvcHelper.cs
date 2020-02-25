@@ -1,4 +1,4 @@
-﻿namespace BIVALESimulator.Helpers
+﻿namespace BIVALE.Simulator.Helpers
 {
     using System.Linq;
     using System.Web.Mvc;

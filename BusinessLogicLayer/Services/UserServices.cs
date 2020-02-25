@@ -1,12 +1,12 @@
-﻿using BusinessLogicLayer.Generic;
-using BusinessLogicLayer.Interfaces;
-using BusinessLogicLayer.Mapping;
-using DataAccessLayer.Models;
-using DataTransferObjectLayer;
+﻿using BIVALE.BLL.Generic;
+using BIVALE.BLL.Interfaces;
+using BIVALE.BLL.Mapping;
+using BIVALE.DAL.Models;
+using BIVALE.DTO;
 using System;
 using System.Collections.Generic;
 
-namespace BusinessLogicLayer.Services
+namespace BIVALE.BLL.Services
 {
 	public class UserServices : UnitOfWork, IUserServices
 	{

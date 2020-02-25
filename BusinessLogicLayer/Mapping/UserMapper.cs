@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using BusinessLogicLayer.Interfaces;
-using BusinessLogicLayer.Services;
-using DataAccessLayer.Models;
-using DataTransferObjectLayer;
+using BIVALE.BLL.Interfaces;
+using BIVALE.BLL.Services;
+using BIVALE.DAL.Models;
+using BIVALE.DTO;
 
-namespace BusinessLogicLayer.Mapping
+namespace BIVALE.BLL.Mapping
 {
 	public class UserMapper : IMapper<UserDTO, User>
 	{

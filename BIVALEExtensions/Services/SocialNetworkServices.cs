@@ -1,6 +1,6 @@
-﻿using BIVALEExtensions.Interface;
-using BIVALEExtensions.Util;
-using DataTransferObjectLayer;
+﻿using BIVALE.Extensions.Interface;
+using BIVALE.Extensions.Util;
+using BIVALE.DTO;
 using log4net;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVALEExtensions.Services
+namespace BIVALE.Extensions.Services
 {
 	public class SocialNetworkServices : ISocialNetworkServices
 	{

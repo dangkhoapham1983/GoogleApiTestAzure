@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure;
 using System.Configuration;
 
-namespace BIVALEExtensions
+namespace BIVALE.Extensions
 {
 	public static class Configuration
 	{

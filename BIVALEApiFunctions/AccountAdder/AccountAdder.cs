@@ -4,14 +4,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AzureFunctions.Autofac;
-using BusinessLogicLayer.Interfaces;
+using BIVALE.BLL.Interfaces;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using BIVALEApiFunctions.Configs;
-using DataTransferObjectLayer;
+using BIVALE.ApiFunctions.Configs;
+using BIVALE.DTO;
 
-namespace BIVALEApiFunctions.AccountAdder
+namespace BIVALE.ApiFunctions.AccountAdder
 {
     [DependencyInjectionConfig(typeof(AutofacConfig))]
     public static class AccountAdder

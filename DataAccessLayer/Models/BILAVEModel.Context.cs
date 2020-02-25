@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccessLayer.Models
+namespace BIVALE.DAL.Models
 {
     using System;
     using System.Data.Entity;

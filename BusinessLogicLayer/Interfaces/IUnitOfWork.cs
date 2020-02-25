@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BusinessLogicLayer.Interfaces
+namespace BIVALE.BLL.Interfaces
 {
 	public interface IUnitOfWork : IDisposable
     {

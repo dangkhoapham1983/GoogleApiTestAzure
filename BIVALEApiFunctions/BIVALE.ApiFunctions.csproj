@@ -20,7 +20,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
-    <ProjectReference Include="..\DataTransferObjectLayer\DataTransferObjectLayer.csproj" />
+    <ProjectReference Include="..\BusinessLogicLayer\BIVALE.BLL.csproj" />
+    <ProjectReference Include="..\DataTransferObjectLayer\BIVALE.DTO.csproj" />
   </ItemGroup>
 </Project>

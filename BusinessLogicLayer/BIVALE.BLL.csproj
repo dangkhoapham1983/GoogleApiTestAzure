@@ -78,13 +78,13 @@
     <Compile Include="Generic\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+    <ProjectReference Include="..\DataAccessLayer\BIVALE.DAL.csproj">
       <Project>{fa7573e3-cbfc-48da-bed8-a3dc1d6dd011}</Project>
-      <Name>DataAccessLayer</Name>
+      <Name>BIVALE.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataTransferObjectLayer\DataTransferObjectLayer.csproj">
+    <ProjectReference Include="..\DataTransferObjectLayer\BIVALE.DTO.csproj">
       <Project>{f1436a18-b9ee-431f-9f9d-4faa9e8bc959}</Project>
-      <Name>DataTransferObjectLayer</Name>
+      <Name>BIVALE.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

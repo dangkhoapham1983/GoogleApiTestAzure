@@ -1,10 +1,10 @@
-﻿using BusinessLogicLayer.Interfaces;
-using DataAccessLayer.Models;
+﻿using BIVALE.BLL.Interfaces;
+using BIVALE.DAL.Models;
 using System;
 using System.Collections;
 using System.Configuration;
 
-namespace BusinessLogicLayer.Generic
+namespace BIVALE.BLL.Generic
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {

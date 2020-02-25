@@ -91,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTransferObjectLayer\DataTransferObjectLayer.csproj">
+    <ProjectReference Include="..\DataTransferObjectLayer\BIVALE.DTO.csproj">
       <Project>{f1436a18-b9ee-431f-9f9d-4faa9e8bc959}</Project>
-      <Name>DataTransferObjectLayer</Name>
+      <Name>BIVALE.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

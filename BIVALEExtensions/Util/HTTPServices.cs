@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Reflection;
 
-namespace BIVALEExtensions.Util
+namespace BIVALE.Extensions.Util
 {
 	public class HTTPServices
 	{

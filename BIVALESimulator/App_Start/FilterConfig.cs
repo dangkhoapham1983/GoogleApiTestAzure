@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace BIVALESimulator
+namespace BIVALE.Simulator
 {
     public class FilterConfig
     {

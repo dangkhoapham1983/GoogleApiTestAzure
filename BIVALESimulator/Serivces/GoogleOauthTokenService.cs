@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BIVALESimulator.Serivces
+namespace BIVALE.Simulator.Serivces
 {
 	public class GoogleOauthTokenService
 	{

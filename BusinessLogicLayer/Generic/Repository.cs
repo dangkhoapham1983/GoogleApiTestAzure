@@ -1,5 +1,5 @@
-﻿using BusinessLogicLayer.Interfaces;
-using DataAccessLayer.Models;
+﻿using BIVALE.BLL.Interfaces;
+using BIVALE.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace BusinessLogicLayer.Generic
+namespace BIVALE.BLL.Generic
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

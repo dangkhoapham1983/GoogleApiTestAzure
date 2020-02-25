@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVALEExtensions.Util
+namespace BIVALE.Extensions.Util
 {
 	public class BaseResponse
 	{

@@ -1,7 +1,7 @@
-﻿using DataTransferObjectLayer;
+﻿using BIVALE.DTO;
 using System.Collections.Generic;
 
-namespace BusinessLogicLayer.Interfaces
+namespace BIVALE.BLL.Interfaces
 {
 	public interface IUserServices
 	{
