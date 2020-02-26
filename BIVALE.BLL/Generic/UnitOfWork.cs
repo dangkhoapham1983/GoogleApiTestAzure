@@ -8,13 +8,13 @@ namespace BIVALE.BLL.Generic
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private GoogleApiEntities context;
+        private BILAVEEntities context;
 
         private Hashtable repositories = new Hashtable();
         public UnitOfWork()
         {
-			//context = DependencyInjector.Retrieve<GoogleApiEntities>(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
-			context = new GoogleApiEntities(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString);
+			//context = DependencyInjector.Retrieve<BILAVEEntities>(ConfigurationManager.ConnectionStrings["BILAVEEntities"].ConnectionString);
+			context = new BILAVEEntities(ConfigurationManager.ConnectionStrings["BILAVEEntities"].ConnectionString);
 		}
         public IRepository<T> GetRepository<T>() where T : class
         {

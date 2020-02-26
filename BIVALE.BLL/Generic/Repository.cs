@@ -11,10 +11,10 @@ namespace BIVALE.BLL.Generic
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        internal GoogleApiEntities context;
+        internal BILAVEEntities context;
         internal DbSet<TEntity> dbSet;
 
-        public Repository(GoogleApiEntities context)
+        public Repository(BILAVEEntities context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

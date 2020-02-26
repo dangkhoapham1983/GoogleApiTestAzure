@@ -65,7 +65,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BILAVEModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\GoogleApiEntitiesConfig.cs" />
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>BILAVEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BILAVEEntitiesConfig.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>BILAVEModel.tt</DependentUpon>
     </Compile>

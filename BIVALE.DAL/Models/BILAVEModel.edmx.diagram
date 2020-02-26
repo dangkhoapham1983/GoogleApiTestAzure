@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6eb6d3ec0ef445209f35286ef7163a39" Name="Diagram1" ZoomLevel="84">
-        <EntityTypeShape EntityType="GoogleApiModel.History" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GoogleApiModel.NodePermission" Width="1.5" PointX="3" PointY="3.5" />
-        <EntityTypeShape EntityType="GoogleApiModel.User" Width="1.5" PointX="0.75" PointY="1.125" />
-        <EntityTypeShape EntityType="GoogleApiModel.UserGroup" Width="1.5" PointX="2.75" PointY="6.75" />
-        <AssociationConnector Association="GoogleApiModel.FK_NodePermission_User" />
+      <Diagram DiagramId="8223fb7d96564095b3cb4ef9618869cd" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="BIVALE.DBSchemaModel.C__RefactorLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BIVALE.DBSchemaModel.History" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BIVALE.DBSchemaModel.NodePermission" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BIVALE.DBSchemaModel.User" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BIVALE.DBSchemaModel.UserGroup" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="BIVALE.DBSchemaModel.FK_NodePermission_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

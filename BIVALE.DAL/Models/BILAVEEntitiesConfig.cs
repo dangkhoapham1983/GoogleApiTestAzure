@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace BIVALE.DAL.Models
 {
 	[DbConfigurationType(typeof(BIVALIEConfiguration))]
-	partial class GoogleApiEntities
+	partial class BILAVEEntities
 	{
-		public GoogleApiEntities(string connection)
-			: base(ConfigurationManager.ConnectionStrings["GoogleApiEntities"].ConnectionString)
+		public BILAVEEntities(string connection)
+			: base(ConfigurationManager.ConnectionStrings["BILAVEEntities"].ConnectionString)
 		{
 			Configuration.LazyLoadingEnabled = true;
 			Configuration.ProxyCreationEnabled = true;

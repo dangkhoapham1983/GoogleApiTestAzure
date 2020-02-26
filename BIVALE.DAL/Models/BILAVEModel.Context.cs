@@ -13,10 +13,10 @@ namespace BIVALE.DAL.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GoogleApiEntities : DbContext
+    public partial class BILAVEEntities : DbContext
     {
-        public GoogleApiEntities()
-            : base("name=GoogleApiEntities")
+        public BILAVEEntities()
+            : base("name=BILAVEEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace BIVALE.DAL.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<NodePermission> NodePermissions { get; set; }
         public virtual DbSet<User> Users { get; set; }
