@@ -10,75 +10,357 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HistoryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="StartDate" Type="datetime" />
-          <Property Name="EndDate" Type="datetime" />
-          <Property Name="Node" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_UPDATED" Type="bigint" Nullable="false" />
+          <Property Name="DATE_TIME" Type="date" Nullable="false" />
+          <Property Name="DATE" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TIME_OF_DATE_TIME" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CURSOR" Type="int" Nullable="false" />
+          <Property Name="CATEGORY" Type="int" Nullable="false" />
+          <Property Name="SMART_GATEWAY_ID" Type="int" Nullable="false" />
+          <Property Name="DEVICE_IDENTIFIER" Type="int" />
+          <Property Name="FLC_ALARM_HISTORY_TYPE" Type="int" />
+          <Property Name="DOOR_NO" Type="int" />
+          <Property Name="CR_NO" Type="int" />
+          <Property Name="CARD_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EVENT_TYPE_NO" Type="int" />
+          <Property Name="EVENT_FACTOR_NO" Type="int" />
+          <Property Name="SEQUENCE_NO" Type="int" />
+          <Property Name="OBJECT_IDENTIFIER" Type="int" />
+          <Property Name="FMC_ALARM_HISTORY_TYPE" Type="int" />
+          <Property Name="UNSIGNED_EVENT_VALUE" Type="int" />
+          <Property Name="FEEDBACK_VALUE" Type="int" />
+          <Property Name="ANALOG_EVENT_VALUE" Type="float" />
+          <Property Name="ANALOG_DEADBAND" Type="float" />
+          <Property Name="ANALOG_EXCEEDED_LIMITED" Type="float" />
+          <Property Name="ACCUMULATOR_EXCEEDED_LIMITED" Type="int" />
+          <Property Name="IN_ALARM" Type="bit" />
+          <Property Name="STATUS_FLAGS" Type="xml" />
+          <Property Name="COMMANDER" Type="int" />
+          <Property Name="COMMANDER_TEXT" Type="nvarchar" MaxLength="255" />
+          <Property Name="CLIENT_ID" Type="int" />
+          <Property Name="CLIENT_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="SITE_GR_ID" Type="xml" />
+          <Property Name="SITE_GR_NAME" Type="xml" />
+          <Property Name="SITE_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="SITE_ID" Type="int" />
+          <Property Name="TENANT_GR_ID" Type="xml" />
+          <Property Name="TENANT_ID" Type="xml" />
+          <Property Name="TENANT_NAME" Type="xml" />
+          <Property Name="EQUIPMENT_GR_ID" Type="xml" />
+          <Property Name="EQUIPMENT_GR_NAME" Type="xml" />
+          <Property Name="EQUIPMENT_NAME1" Type="nvarchar" MaxLength="255" />
+          <Property Name="EQUIPMENT_NAME2" Type="nvarchar" MaxLength="255" />
+          <Property Name="EVENT_MESSAGE" Type="nvarchar" MaxLength="255" />
+          <Property Name="EVENT_TEXT" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION_DATE" Type="date" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTROL_CENTER_DESCRIPTION_DATE" Type="date" />
+          <Property Name="CONTROL_CENTER_DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="MANAGEMENT_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="PERSON_ID" Type="int" />
+          <Property Name="PERSON_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="CARD_ID" Type="int" />
+          <Property Name="CARD_FACE_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CARD_CATEGORY" Type="int" />
+          <Property Name="CARD_ROOM" Type="nvarchar" MaxLength="255" />
+          <Property Name="CARD_DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="CREDENTIAL_READER_ID" Type="int" />
+          <Property Name="BRANCH_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="MANAGE_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTROLLER_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="SERVICE_TEXT" Type="nvarchar" MaxLength="255" />
+          <Property Name="TYPE" Type="int" />
+          <Property Name="VALUES_OWNER_ID" Type="int" />
+          <Property Name="CAMERA_ID_LIST" Type="xml" />
+          <Property Name="PERSON_GR_ID" Type="xml" />
+          <Property Name="PERSON_GR_NAME" Type="xml" />
+          <Property Name="CREDENTIAL_GR_ID" Type="xml" />
+          <Property Name="CREDENTIAL_GR_NAME" Type="xml" />
+          <Property Name="SCREEN_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="OPERATION" Type="nvarchar" MaxLength="255" />
+          <Property Name="RESULT" Type="bit" />
+          <Property Name="USERS_ID" Type="int" />
+          <Property Name="LOGIN_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="USERS_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="USERS_GR_ID" Type="xml" />
+          <Property Name="USERS_GR_NAME" Type="xml" />
+          <Property Name="PERSON_NODE_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="CREDENTIAL_NODE_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="EQUIPMENT_POINT_NODE_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="TENANT_NODE_PATHS" Type="xml" />
+          <Property Name="USER_OPERATION_NODE_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="TAG" Type="nvarchar" MaxLength="255" />
+          <Property Name="POINT_NO" Type="int" />
+          <Property Name="ALARM_PRIORITY" Type="int" />
+          <Property Name="LINE_TYPE" Type="int" />
+          <Property Name="ACTING_FLAG" Type="int" />
+          <Property Name="BUILDING_MANAGEMENT_ALARM_FLAG" Type="int" />
+          <Property Name="DISTRIBUTION_PATTERN" Type="int" />
         </EntityType>
-        <EntityType Name="UserProfile">
+        <EntityType Name="NodePermission">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="Permission" Type="nvarchar" MaxLength="50" />
-          <Property Name="NodePath" Type="nvarchar" MaxLength="50" />
+          <Property Name="PERMISSION_OWNER_ID" Type="int" Nullable="false" />
+          <Property Name="PERMISSION_OWNER_TYPE" Type="int" Nullable="false" />
+          <Property Name="NODE_PATH" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="PERMISSION_LEVEL" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SSN" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="USER_TYPE" Type="int" Nullable="false" />
+          <Property Name="PASSWORD1" Type="nvarchar" MaxLength="50" />
+          <Property Name="PASSWORD2" Type="nvarchar" MaxLength="50" />
+          <Property Name="AUTHENTICATION_CODE" Type="nvarchar" MaxLength="160" />
+          <Property Name="PARENT_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="POSITION" Type="nvarchar" MaxLength="400" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="40" />
+          <Property Name="EDIT_FORBIDDEN" Type="int" />
+          <Property Name="MAIL_ADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD_EXPIRATION_TERM" Type="int" />
+          <Property Name="PASSWORD_UPDATE_NOTIFICATION" Type="int" />
+          <Property Name="PASSWORD_UPDATE_DATE" Type="date" />
+          <Property Name="HISTORY_DOWNLOAD_NOTIFICATION" Type="int" />
+          <Property Name="LAST_DOWNLOAD_DATE" Type="date" />
+          <Property Name="HISTORY_DOWNLOAD_NOTIFI_FLG" Type="int" />
+          <Property Name="ANNOUNCEMENT_MAIL_RECEIVE" Type="int" />
+          <Property Name="START_DATE" Type="date" />
+          <Property Name="EXPIRATION_DATE" Type="date" />
+          <Property Name="COLUMN1" Type="nvarchar" MaxLength="40" />
+          <Property Name="COLUMN2" Type="nvarchar" MaxLength="40" />
+          <Property Name="NODE_PATH" Type="nvarchar" MaxLength="300" />
+          <Property Name="NOTIFICATION_INTERVAL" Type="int" />
+          <Property Name="NOTIFICATION_DATE_COUNT" Type="int" />
+          <Property Name="BUILDING_MANAGEMENT_SERVICE" Type="int" />
+          <Property Name="BUILDING_MANAGEMENT_USER_TYPE" Type="int" />
+          <Property Name="ANNOUNCEMENT_NOTIFICATION" Type="int" />
         </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="40" />
+          <Property Name="HOMEPAGE_URL" Type="nvarchar" MaxLength="100" />
+          <Property Name="DEFAULT_PASSWORD_VALID_TERM" Type="int" />
+          <Property Name="PARENT_ID" Type="int" />
+          <Property Name="HIERARCHY_DEPTH" Type="int" Nullable="false" />
+          <Property Name="NODE_PATH" Type="nvarchar" MaxLength="300" />
+          <Property Name="USER_GR_CODE" Type="nvarchar" MaxLength="30" />
+          <Property Name="USERS_GR_TYPE" Type="int" />
+          <Property Name="MAX_USER_COUNT" Type="int" />
+        </EntityType>
+        <Association Name="FK_NodePermission_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="NodePermission" Type="Self.NodePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NodePermission">
+              <PropertyRef Name="PERMISSION_OWNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GoogleApiModelStoreContainer">
           <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NodePermission" EntityType="Self.NodePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_NodePermission_User" Association="Self.FK_NodePermission_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="NodePermission" EntitySet="NodePermission" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GoogleApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GoogleApiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Histories" EntityType="GoogleApiModel.History" />
+          <EntitySet Name="NodePermissions" EntityType="GoogleApiModel.NodePermission" />
+          <EntitySet Name="Users" EntityType="GoogleApiModel.User" />
+          <EntitySet Name="UserGroups" EntityType="GoogleApiModel.UserGroup" />
+          <AssociationSet Name="FK_NodePermission_User" Association="GoogleApiModel.FK_NodePermission_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NodePermission" EntitySet="NodePermissions" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="History">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HistoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Node" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_UPDATED" Type="Int64" Nullable="false" />
+          <Property Name="DATE_TIME" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TIME_OF_DATE_TIME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CURSOR" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY" Type="Int32" Nullable="false" />
+          <Property Name="SMART_GATEWAY_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEVICE_IDENTIFIER" Type="Int32" />
+          <Property Name="FLC_ALARM_HISTORY_TYPE" Type="Int32" />
+          <Property Name="DOOR_NO" Type="Int32" />
+          <Property Name="CR_NO" Type="Int32" />
+          <Property Name="CARD_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EVENT_TYPE_NO" Type="Int32" />
+          <Property Name="EVENT_FACTOR_NO" Type="Int32" />
+          <Property Name="SEQUENCE_NO" Type="Int32" />
+          <Property Name="OBJECT_IDENTIFIER" Type="Int32" />
+          <Property Name="FMC_ALARM_HISTORY_TYPE" Type="Int32" />
+          <Property Name="UNSIGNED_EVENT_VALUE" Type="Int32" />
+          <Property Name="FEEDBACK_VALUE" Type="Int32" />
+          <Property Name="ANALOG_EVENT_VALUE" Type="Double" />
+          <Property Name="ANALOG_DEADBAND" Type="Double" />
+          <Property Name="ANALOG_EXCEEDED_LIMITED" Type="Double" />
+          <Property Name="ACCUMULATOR_EXCEEDED_LIMITED" Type="Int32" />
+          <Property Name="IN_ALARM" Type="Boolean" />
+          <Property Name="STATUS_FLAGS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COMMANDER" Type="Int32" />
+          <Property Name="COMMANDER_TEXT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENT_ID" Type="Int32" />
+          <Property Name="CLIENT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_GR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_ID" Type="Int32" />
+          <Property Name="TENANT_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EQUIPMENT_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EQUIPMENT_GR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EQUIPMENT_NAME1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EQUIPMENT_NAME2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EVENT_MESSAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EVENT_TEXT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_DATE" Type="DateTime" Precision="0" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="USER_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTROL_CENTER_DESCRIPTION_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CONTROL_CENTER_DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MANAGEMENT_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PERSON_ID" Type="Int32" />
+          <Property Name="PERSON_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CARD_ID" Type="Int32" />
+          <Property Name="CARD_FACE_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CARD_CATEGORY" Type="Int32" />
+          <Property Name="CARD_ROOM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CARD_DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CREDENTIAL_READER_ID" Type="Int32" />
+          <Property Name="BRANCH_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MANAGE_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTROLLER_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SERVICE_TEXT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="Int32" />
+          <Property Name="VALUES_OWNER_ID" Type="Int32" />
+          <Property Name="CAMERA_ID_LIST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PERSON_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PERSON_GR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREDENTIAL_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREDENTIAL_GR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SCREEN_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OPERATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RESULT" Type="Boolean" />
+          <Property Name="USERS_ID" Type="Int32" />
+          <Property Name="LOGIN_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="USERS_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="USERS_GR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USERS_GR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PERSON_NODE_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CREDENTIAL_NODE_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EQUIPMENT_POINT_NODE_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_NODE_PATHS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USER_OPERATION_NODE_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="POINT_NO" Type="Int32" />
+          <Property Name="ALARM_PRIORITY" Type="Int32" />
+          <Property Name="LINE_TYPE" Type="Int32" />
+          <Property Name="ACTING_FLAG" Type="Int32" />
+          <Property Name="BUILDING_MANAGEMENT_ALARM_FLAG" Type="Int32" />
+          <Property Name="DISTRIBUTION_PATTERN" Type="Int32" />
         </EntityType>
-        <EntityType Name="UserProfile">
+        <EntityType Name="NodePermission">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NodePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PERMISSION_OWNER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PERMISSION_OWNER_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="NODE_PATH" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PERMISSION_LEVEL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GoogleApiModel.FK_NodePermission_User" FromRole="NodePermission" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SSN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGIN_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="USER_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="PASSWORD1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHENTICATION_CODE" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="POSITION" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="EDIT_FORBIDDEN" Type="Int32" />
+          <Property Name="MAIL_ADDRESS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD_EXPIRATION_TERM" Type="Int32" />
+          <Property Name="PASSWORD_UPDATE_NOTIFICATION" Type="Int32" />
+          <Property Name="PASSWORD_UPDATE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="HISTORY_DOWNLOAD_NOTIFICATION" Type="Int32" />
+          <Property Name="LAST_DOWNLOAD_DATE" Type="DateTime" Precision="0" />
+          <Property Name="HISTORY_DOWNLOAD_NOTIFI_FLG" Type="Int32" />
+          <Property Name="ANNOUNCEMENT_MAIL_RECEIVE" Type="Int32" />
+          <Property Name="START_DATE" Type="DateTime" Precision="0" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" Precision="0" />
+          <Property Name="COLUMN1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="COLUMN2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NODE_PATH" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NOTIFICATION_INTERVAL" Type="Int32" />
+          <Property Name="NOTIFICATION_DATE_COUNT" Type="Int32" />
+          <Property Name="BUILDING_MANAGEMENT_SERVICE" Type="Int32" />
+          <Property Name="BUILDING_MANAGEMENT_USER_TYPE" Type="Int32" />
+          <Property Name="ANNOUNCEMENT_NOTIFICATION" Type="Int32" />
+          <NavigationProperty Name="NodePermissions" Relationship="GoogleApiModel.FK_NodePermission_User" FromRole="User" ToRole="NodePermission" />
         </EntityType>
-        <EntityContainer Name="GoogleApiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Histories" EntityType="Self.History" />
-          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-        </EntityContainer>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="HOMEPAGE_URL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DEFAULT_PASSWORD_VALID_TERM" Type="Int32" />
+          <Property Name="PARENT_ID" Type="Int32" />
+          <Property Name="HIERARCHY_DEPTH" Type="Int32" Nullable="false" />
+          <Property Name="NODE_PATH" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="USER_GR_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="USERS_GR_TYPE" Type="Int32" />
+          <Property Name="MAX_USER_COUNT" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_NodePermission_User">
+          <End Type="GoogleApiModel.User" Role="User" Multiplicity="1" />
+          <End Type="GoogleApiModel.NodePermission" Role="NodePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NodePermission">
+              <PropertyRef Name="PERMISSION_OWNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -88,33 +370,157 @@
           <EntitySetMapping Name="Histories">
             <EntityTypeMapping TypeName="GoogleApiModel.History">
               <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="DISTRIBUTION_PATTERN" ColumnName="DISTRIBUTION_PATTERN" />
+                <ScalarProperty Name="BUILDING_MANAGEMENT_ALARM_FLAG" ColumnName="BUILDING_MANAGEMENT_ALARM_FLAG" />
+                <ScalarProperty Name="ACTING_FLAG" ColumnName="ACTING_FLAG" />
+                <ScalarProperty Name="LINE_TYPE" ColumnName="LINE_TYPE" />
+                <ScalarProperty Name="ALARM_PRIORITY" ColumnName="ALARM_PRIORITY" />
+                <ScalarProperty Name="POINT_NO" ColumnName="POINT_NO" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="USER_OPERATION_NODE_PATH" ColumnName="USER_OPERATION_NODE_PATH" />
+                <ScalarProperty Name="TENANT_NODE_PATHS" ColumnName="TENANT_NODE_PATHS" />
+                <ScalarProperty Name="EQUIPMENT_POINT_NODE_PATH" ColumnName="EQUIPMENT_POINT_NODE_PATH" />
+                <ScalarProperty Name="CREDENTIAL_NODE_PATH" ColumnName="CREDENTIAL_NODE_PATH" />
+                <ScalarProperty Name="PERSON_NODE_PATH" ColumnName="PERSON_NODE_PATH" />
+                <ScalarProperty Name="USERS_GR_NAME" ColumnName="USERS_GR_NAME" />
+                <ScalarProperty Name="USERS_GR_ID" ColumnName="USERS_GR_ID" />
+                <ScalarProperty Name="USERS_NAME" ColumnName="USERS_NAME" />
+                <ScalarProperty Name="LOGIN_NAME" ColumnName="LOGIN_NAME" />
+                <ScalarProperty Name="USERS_ID" ColumnName="USERS_ID" />
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+                <ScalarProperty Name="SCREEN_NAME" ColumnName="SCREEN_NAME" />
+                <ScalarProperty Name="CREDENTIAL_GR_NAME" ColumnName="CREDENTIAL_GR_NAME" />
+                <ScalarProperty Name="CREDENTIAL_GR_ID" ColumnName="CREDENTIAL_GR_ID" />
+                <ScalarProperty Name="PERSON_GR_NAME" ColumnName="PERSON_GR_NAME" />
+                <ScalarProperty Name="PERSON_GR_ID" ColumnName="PERSON_GR_ID" />
+                <ScalarProperty Name="CAMERA_ID_LIST" ColumnName="CAMERA_ID_LIST" />
+                <ScalarProperty Name="VALUES_OWNER_ID" ColumnName="VALUES_OWNER_ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="SERVICE_TEXT" ColumnName="SERVICE_TEXT" />
+                <ScalarProperty Name="CONTROLLER_CODE" ColumnName="CONTROLLER_CODE" />
+                <ScalarProperty Name="MANAGE_NO" ColumnName="MANAGE_NO" />
+                <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+                <ScalarProperty Name="CREDENTIAL_READER_ID" ColumnName="CREDENTIAL_READER_ID" />
+                <ScalarProperty Name="CARD_DESCRIPTION" ColumnName="CARD_DESCRIPTION" />
+                <ScalarProperty Name="CARD_ROOM" ColumnName="CARD_ROOM" />
+                <ScalarProperty Name="CARD_CATEGORY" ColumnName="CARD_CATEGORY" />
+                <ScalarProperty Name="CARD_FACE_NO" ColumnName="CARD_FACE_NO" />
+                <ScalarProperty Name="CARD_ID" ColumnName="CARD_ID" />
+                <ScalarProperty Name="PERSON_NAME" ColumnName="PERSON_NAME" />
+                <ScalarProperty Name="PERSON_ID" ColumnName="PERSON_ID" />
+                <ScalarProperty Name="MANAGEMENT_CODE" ColumnName="MANAGEMENT_CODE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CONTROL_CENTER_DESCRIPTION" ColumnName="CONTROL_CENTER_DESCRIPTION" />
+                <ScalarProperty Name="CONTROL_CENTER_DESCRIPTION_DATE" ColumnName="CONTROL_CENTER_DESCRIPTION_DATE" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="DESCRIPTION_DATE" ColumnName="DESCRIPTION_DATE" />
+                <ScalarProperty Name="EVENT_TEXT" ColumnName="EVENT_TEXT" />
+                <ScalarProperty Name="EVENT_MESSAGE" ColumnName="EVENT_MESSAGE" />
+                <ScalarProperty Name="EQUIPMENT_NAME2" ColumnName="EQUIPMENT_NAME2" />
+                <ScalarProperty Name="EQUIPMENT_NAME1" ColumnName="EQUIPMENT_NAME1" />
+                <ScalarProperty Name="EQUIPMENT_GR_NAME" ColumnName="EQUIPMENT_GR_NAME" />
+                <ScalarProperty Name="EQUIPMENT_GR_ID" ColumnName="EQUIPMENT_GR_ID" />
+                <ScalarProperty Name="TENANT_NAME" ColumnName="TENANT_NAME" />
+                <ScalarProperty Name="TENANT_ID" ColumnName="TENANT_ID" />
+                <ScalarProperty Name="TENANT_GR_ID" ColumnName="TENANT_GR_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+                <ScalarProperty Name="SITE_GR_NAME" ColumnName="SITE_GR_NAME" />
+                <ScalarProperty Name="SITE_GR_ID" ColumnName="SITE_GR_ID" />
+                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="COMMANDER_TEXT" ColumnName="COMMANDER_TEXT" />
+                <ScalarProperty Name="COMMANDER" ColumnName="COMMANDER" />
+                <ScalarProperty Name="STATUS_FLAGS" ColumnName="STATUS_FLAGS" />
+                <ScalarProperty Name="IN_ALARM" ColumnName="IN_ALARM" />
+                <ScalarProperty Name="ACCUMULATOR_EXCEEDED_LIMITED" ColumnName="ACCUMULATOR_EXCEEDED_LIMITED" />
+                <ScalarProperty Name="ANALOG_EXCEEDED_LIMITED" ColumnName="ANALOG_EXCEEDED_LIMITED" />
+                <ScalarProperty Name="ANALOG_DEADBAND" ColumnName="ANALOG_DEADBAND" />
+                <ScalarProperty Name="ANALOG_EVENT_VALUE" ColumnName="ANALOG_EVENT_VALUE" />
+                <ScalarProperty Name="FEEDBACK_VALUE" ColumnName="FEEDBACK_VALUE" />
+                <ScalarProperty Name="UNSIGNED_EVENT_VALUE" ColumnName="UNSIGNED_EVENT_VALUE" />
+                <ScalarProperty Name="FMC_ALARM_HISTORY_TYPE" ColumnName="FMC_ALARM_HISTORY_TYPE" />
+                <ScalarProperty Name="OBJECT_IDENTIFIER" ColumnName="OBJECT_IDENTIFIER" />
+                <ScalarProperty Name="SEQUENCE_NO" ColumnName="SEQUENCE_NO" />
+                <ScalarProperty Name="EVENT_FACTOR_NO" ColumnName="EVENT_FACTOR_NO" />
+                <ScalarProperty Name="EVENT_TYPE_NO" ColumnName="EVENT_TYPE_NO" />
+                <ScalarProperty Name="CARD_NO" ColumnName="CARD_NO" />
+                <ScalarProperty Name="CR_NO" ColumnName="CR_NO" />
+                <ScalarProperty Name="DOOR_NO" ColumnName="DOOR_NO" />
+                <ScalarProperty Name="FLC_ALARM_HISTORY_TYPE" ColumnName="FLC_ALARM_HISTORY_TYPE" />
+                <ScalarProperty Name="DEVICE_IDENTIFIER" ColumnName="DEVICE_IDENTIFIER" />
+                <ScalarProperty Name="SMART_GATEWAY_ID" ColumnName="SMART_GATEWAY_ID" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="CURSOR" ColumnName="CURSOR" />
+                <ScalarProperty Name="TIME_OF_DATE_TIME" ColumnName="TIME_OF_DATE_TIME" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="DATE_TIME" ColumnName="DATE_TIME" />
+                <ScalarProperty Name="LAST_UPDATED" ColumnName="LAST_UPDATED" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="HistoryName" ColumnName="HistoryName" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="Node" ColumnName="Node" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="GoogleApiModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
+          <EntitySetMapping Name="NodePermissions">
+            <EntityTypeMapping TypeName="GoogleApiModel.NodePermission">
+              <MappingFragment StoreEntitySet="NodePermission">
+                <ScalarProperty Name="PERMISSION_LEVEL" ColumnName="PERMISSION_LEVEL" />
+                <ScalarProperty Name="NODE_PATH" ColumnName="NODE_PATH" />
+                <ScalarProperty Name="PERMISSION_OWNER_TYPE" ColumnName="PERMISSION_OWNER_TYPE" />
+                <ScalarProperty Name="PERMISSION_OWNER_ID" ColumnName="PERMISSION_OWNER_ID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Permission" ColumnName="Permission" />
-                <ScalarProperty Name="NodePath" ColumnName="NodePath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="GoogleApiModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="SSN" ColumnName="SSN" />
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ANNOUNCEMENT_NOTIFICATION" ColumnName="ANNOUNCEMENT_NOTIFICATION" />
+                <ScalarProperty Name="BUILDING_MANAGEMENT_USER_TYPE" ColumnName="BUILDING_MANAGEMENT_USER_TYPE" />
+                <ScalarProperty Name="BUILDING_MANAGEMENT_SERVICE" ColumnName="BUILDING_MANAGEMENT_SERVICE" />
+                <ScalarProperty Name="NOTIFICATION_DATE_COUNT" ColumnName="NOTIFICATION_DATE_COUNT" />
+                <ScalarProperty Name="NOTIFICATION_INTERVAL" ColumnName="NOTIFICATION_INTERVAL" />
+                <ScalarProperty Name="NODE_PATH" ColumnName="NODE_PATH" />
+                <ScalarProperty Name="COLUMN2" ColumnName="COLUMN2" />
+                <ScalarProperty Name="COLUMN1" ColumnName="COLUMN1" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="ANNOUNCEMENT_MAIL_RECEIVE" ColumnName="ANNOUNCEMENT_MAIL_RECEIVE" />
+                <ScalarProperty Name="HISTORY_DOWNLOAD_NOTIFI_FLG" ColumnName="HISTORY_DOWNLOAD_NOTIFI_FLG" />
+                <ScalarProperty Name="LAST_DOWNLOAD_DATE" ColumnName="LAST_DOWNLOAD_DATE" />
+                <ScalarProperty Name="HISTORY_DOWNLOAD_NOTIFICATION" ColumnName="HISTORY_DOWNLOAD_NOTIFICATION" />
+                <ScalarProperty Name="PASSWORD_UPDATE_DATE" ColumnName="PASSWORD_UPDATE_DATE" />
+                <ScalarProperty Name="PASSWORD_UPDATE_NOTIFICATION" ColumnName="PASSWORD_UPDATE_NOTIFICATION" />
+                <ScalarProperty Name="PASSWORD_EXPIRATION_TERM" ColumnName="PASSWORD_EXPIRATION_TERM" />
+                <ScalarProperty Name="MAIL_ADDRESS" ColumnName="MAIL_ADDRESS" />
+                <ScalarProperty Name="EDIT_FORBIDDEN" ColumnName="EDIT_FORBIDDEN" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="AUTHENTICATION_CODE" ColumnName="AUTHENTICATION_CODE" />
+                <ScalarProperty Name="PASSWORD2" ColumnName="PASSWORD2" />
+                <ScalarProperty Name="PASSWORD1" ColumnName="PASSWORD1" />
+                <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+                <ScalarProperty Name="LOGIN_NAME" ColumnName="LOGIN_NAME" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="GoogleApiModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="MAX_USER_COUNT" ColumnName="MAX_USER_COUNT" />
+                <ScalarProperty Name="USERS_GR_TYPE" ColumnName="USERS_GR_TYPE" />
+                <ScalarProperty Name="USER_GR_CODE" ColumnName="USER_GR_CODE" />
+                <ScalarProperty Name="NODE_PATH" ColumnName="NODE_PATH" />
+                <ScalarProperty Name="HIERARCHY_DEPTH" ColumnName="HIERARCHY_DEPTH" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="DEFAULT_PASSWORD_VALID_TERM" ColumnName="DEFAULT_PASSWORD_VALID_TERM" />
+                <ScalarProperty Name="HOMEPAGE_URL" ColumnName="HOMEPAGE_URL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

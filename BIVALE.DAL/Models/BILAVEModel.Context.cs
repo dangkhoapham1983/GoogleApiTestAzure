@@ -26,7 +26,8 @@ namespace BIVALE.DAL.Models
         }
     
         public virtual DbSet<History> Histories { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<NodePermission> NodePermissions { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
     }
 }

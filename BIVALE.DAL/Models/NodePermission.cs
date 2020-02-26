@@ -12,12 +12,14 @@ namespace BIVALE.DAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserProfile
+    public partial class NodePermission
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Permission { get; set; }
-        public string NodePath { get; set; }
+        public int PERMISSION_OWNER_ID { get; set; }
+        public int PERMISSION_OWNER_TYPE { get; set; }
+        public string NODE_PATH { get; set; }
+        public int PERMISSION_LEVEL { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }
