@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
+    <AssemblyName>BIVALE.ApiFunctions</AssemblyName>
+    <RootNamespace>BIVALE.ApiFunctions</RootNamespace>
   </PropertyGroup>
   <ItemGroup>    
     <PackageReference Include="AzureFunctions.Autofac" Version="2.0.0" />    

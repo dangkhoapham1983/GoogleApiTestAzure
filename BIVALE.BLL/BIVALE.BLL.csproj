@@ -8,8 +8,8 @@
     <ProjectGuid>{D1496A5A-26CF-4BAE-9377-2FDE2C737102}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogicLayer</RootNamespace>
-    <AssemblyName>BusinessLogicLayer</AssemblyName>
+    <RootNamespace>BIVALE.BLL</RootNamespace>
+    <AssemblyName>BIVALE.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

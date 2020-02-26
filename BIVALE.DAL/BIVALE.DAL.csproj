@@ -7,8 +7,8 @@
     <ProjectGuid>{FA7573E3-CBFC-48DA-BED8-A3DC1D6DD011}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccessLayer</RootNamespace>
-    <AssemblyName>DataAccessLayer</AssemblyName>
+    <RootNamespace>BIVALE.DAL</RootNamespace>
+    <AssemblyName>BIVALE.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
