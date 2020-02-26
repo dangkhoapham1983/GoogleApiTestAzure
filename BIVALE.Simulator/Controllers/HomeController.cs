@@ -61,7 +61,7 @@ namespace BIVALE.Simulator.Controllers
 		public ActionResult GetGrid()
 		{
 			var obj = new SocialNetworkServices();
-			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.FirstName);
+			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.MAIL_ADDRESS);
 			var grid = this.gridMvcHelper.GetAjaxGrid(result);
 
 			return PartialView(GRID_PARTIAL_PATH, grid);
@@ -71,7 +71,7 @@ namespace BIVALE.Simulator.Controllers
 		public ActionResult GridPager(int? page)
 		{
 			var obj = new SocialNetworkServices();
-			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.FirstName);
+			var result = obj.GetUserDTO().AsQueryable().OrderBy(f => f.MAIL_ADDRESS);
 			var grid = this.gridMvcHelper.GetAjaxGrid(result, page);
 			object jsonData = this.gridMvcHelper.GetGridJsonData(grid, GRID_PARTIAL_PATH, this);
 
