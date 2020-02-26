@@ -60,5 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="History.sql" />
+    <Build Include="NodePermission.sql" />
+    <Build Include="User.sql" />
   </ItemGroup>
 </Project>
