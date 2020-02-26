@@ -62,5 +62,6 @@
     <Build Include="History.sql" />
     <Build Include="NodePermission.sql" />
     <Build Include="User.sql" />
+    <Build Include="UserGroup.sql" />
   </ItemGroup>
 </Project>
