@@ -7,7 +7,8 @@
   <ItemGroup>    
     <PackageReference Include="AzureFunctions.Autofac" Version="2.0.0" />    
     <PackageReference Include="EntityFramework" Version="6.2.0" />    
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.7" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.7" />    
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -24,5 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BIVALE.BLL\BIVALE.BLL.csproj" />
     <ProjectReference Include="..\BIVALE.DTO\BIVALE.DTO.csproj" />
+    <ProjectReference Include="..\BIVALE.GoogleClient\BIVALE.GoogleClient.csproj" />
   </ItemGroup>
 </Project>

@@ -28,6 +28,7 @@ namespace BIVALE.Simulator.Controllers
 
 		public ActionResult Index()
         {
+			var test = this.Request;
 			return View(new List<UserDTO>());
         }
 

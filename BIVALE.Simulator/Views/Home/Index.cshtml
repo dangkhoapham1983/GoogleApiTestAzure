@@ -41,7 +41,10 @@
                 //Retrieve the singleton for the GoogleAuth library and set up the client.
                 auth2 = gapi.auth2.init({
 					client_id: '724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com',
-					secret_key: 'OLaWJI81VkdKlz0qUZfi0ojv',
+					//secret_key: 'OLaWJI81VkdKlz0qUZfi0ojv',
+					response_type: 'code',
+					access_type: 'offline',
+					redirect_uri: 'http://localhost:51013',
                     cookiepolicy: 'single_host_origin',
                 });
                 attachSignin(document.getElementById('googleplus'));
@@ -55,7 +58,11 @@
                     $(".se-pre-con").show();
 					console.log(googleUser);
 					var profiles = googleUser.getBasicProfile();
-                    var ReturnUrl = 'http://localhost:51013/Home/ReturnURL';
+					var getAuth = googleUser.getAuthResponse();
+					var getGranted = googleUser.getGrantedScopes();
+					var grantOffline = googleUser.grantOfflineAccess();
+					var hasGranted = googleUser.hasGrantedScopes();
+					var reloadAuth = googleUser.reloadAuthResponse();
 
                     //Crate A Bunch Of Object for Search
                     var objData = {

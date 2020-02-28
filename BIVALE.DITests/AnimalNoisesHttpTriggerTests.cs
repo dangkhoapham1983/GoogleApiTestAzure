@@ -17,7 +17,7 @@ namespace BIVALE.DITests
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
             var response = await AnimalNoisesHttpTrigger.Run(request, traceWriter, new Dog());
-            var content = await response.Content.ReadAsAsync<string>();
+			var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Bark!", content);
         }
 

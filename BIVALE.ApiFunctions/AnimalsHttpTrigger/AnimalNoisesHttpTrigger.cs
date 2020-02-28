@@ -9,6 +9,8 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using BIVALE.ApiFunctions.Configs;
+using BIVALE.GoogleClient.Services;
+using BIVALE.GoogleClient;
 
 namespace BIVALE.ApiFunctions.AnimalsHttpTrigger
 {
@@ -20,9 +22,26 @@ namespace BIVALE.ApiFunctions.AnimalsHttpTrigger
         {
             log.Info("C# HTTP trigger function processed a request.");
 			HttpResponseMessage response = null;
+			string code = req.GetQueryNameValuePairs()
+				.FirstOrDefault(q => q.Key == "code")
+				.Value;
+
+			dynamic data = await req.Content.ReadAsAsync<object>();
+			code = code ?? data?.text;
+			GoogleService a = new GoogleService();
+			var result = new UserGoogle();
+			if (string.IsNullOrEmpty(code))
+			{
+				result = a.Validate();
+			}
+			else
+			{
+				result = await a.CodeValidate(code);
+			}
+			
 			await Task.Run(() =>
 			{
-				response = req.CreateResponse(HttpStatusCode.OK, animal.MakeNoise());
+				response = req.CreateResponse(HttpStatusCode.OK, result);
 			});
 
 			return response;
