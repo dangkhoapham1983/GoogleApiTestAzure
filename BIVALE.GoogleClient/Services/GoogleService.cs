@@ -13,6 +13,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace BIVALE.GoogleClient.Services
 {
@@ -50,6 +53,7 @@ namespace BIVALE.GoogleClient.Services
 				resut.Scope = token.Scope;
 				resut.TokenType = token.TokenType;
 				resut.Code = code;
+				resut.Email = GetUserInfo(token).Result.email;
 			}
 
 			return resut;
@@ -79,6 +83,40 @@ namespace BIVALE.GoogleClient.Services
 			Process.Start(url.Build().ToString());
 
 			return new UserGoogle();
+		}
+
+		async Task<UserDetail> GetUserInfo(TokenResponse token)
+		{
+			var query = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + token.AccessToken;
+
+			var client = new HttpClient();
+
+			string user = await client.GetStringAsync(query);
+
+			return ExtractUser(user);
+		}
+
+		UserDetail ExtractUser(string input)
+		{
+			var stream = new MemoryStream(UnicodeEncoding.Unicode.GetBytes(input));
+
+			var serializer = new DataContractJsonSerializer(typeof(UserDetail));
+
+			return (UserDetail)serializer.ReadObject(stream);
+		}
+
+		public class UserDetail
+		{
+			public string Id { get; set; }
+			public string Name { get; set; }
+			public string GivenName { get; set; }
+			public string FamilyName { get; set; }
+			public string Link { get; set; }
+			public string PictureUri { get; set; }
+			public string Gender { get; set; }
+			public string Locale { get; set; }
+
+			public string email { get; set; }
 		}
 	}
 }
