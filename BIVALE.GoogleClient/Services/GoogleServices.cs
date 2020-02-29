@@ -23,27 +23,60 @@ namespace BIVALE.GoogleClient.Services
 {
 	public class GoogleServices : IGoogleServices
 	{
+		public string GoogleClientID
+		{
+			get
+			{
+				return Environment.GetEnvironmentVariable("GoogleClientID");
+			}
+		}
+
+		public string GoogleClientSecret
+		{
+			get
+			{
+				return Environment.GetEnvironmentVariable("GoogleClientSecret");
+			}
+		}
+
+		public string RedirectURL
+		{
+			get
+			{
+				return Environment.GetEnvironmentVariable("RedirectURL");
+			}
+		}
+
+		public string[] Scopes
+		{
+			get
+			{
+				return new[] { "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
+			}
+		}
 
 		public async Task<UserGoogle> CodeValidate(string code)
 		{
-			string clientID = "724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com";
-			string clientSecret = "OLaWJI81VkdKlz0qUZfi0ojv";
-			var scopes = new[] { "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
-			string redirect = "http://localhost:7071/api/HistoryHttpTrigger";
-
 			var clientSecrets = new ClientSecrets
 			{
-				ClientId = clientID,
-				ClientSecret = clientSecret,
+				ClientId = GoogleClientID,
+				ClientSecret = GoogleClientSecret,
 			};
 
 			IAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
 			{
 				ClientSecrets = clientSecrets,
-				Scopes = scopes,
+				Scopes = Scopes,
 			});
 
-			TokenResponse token = await flow.ExchangeCodeForTokenAsync("", code, redirect, CancellationToken.None);
+			TokenResponse token = await flow.ExchangeCodeForTokenAsync("me", code, RedirectURL, CancellationToken.None);
+			UserGoogle resut = GetUserGoogle(flow, token);
+
+			return resut;
+		}
+
+		private static UserGoogle GetUserGoogle(IAuthorizationCodeFlow flow, TokenResponse token)
+		{
 			var resut = new UserGoogle();
 			if (token != null)
 			{
@@ -59,7 +92,6 @@ namespace BIVALE.GoogleClient.Services
 				{ "person.emailAddresses", "person.names"  }; ;
 				var profile = peoplerequest.Execute();
 
-
 				resut.IdToken = token.IdToken;
 				resut.AccessToken = token.AccessToken;
 				resut.ExpiresInSeconds = token.ExpiresInSeconds;
@@ -68,7 +100,6 @@ namespace BIVALE.GoogleClient.Services
 				resut.RefreshToken = token.RefreshToken;
 				resut.Scope = token.Scope;
 				resut.TokenType = token.TokenType;
-				resut.Code = code;
 				resut.Email = profile.EmailAddresses.FirstOrDefault().Value;
 			}
 
@@ -77,28 +108,23 @@ namespace BIVALE.GoogleClient.Services
 
 		public UserGoogle Validate()
 		{
-			string clientID = "724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com";
-			string clientSecret = "OLaWJI81VkdKlz0qUZfi0ojv";
-			var scopes = new[] { "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
-			string redirect = "http://localhost:7071/api/HistoryHttpTrigger";
-
 			var clientSecrets = new ClientSecrets
 			{
-				ClientId = clientID,
-				ClientSecret = clientSecret
+				ClientId = GoogleClientID,
+				ClientSecret = GoogleClientSecret
 			};
 
-			var credential = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
+			IAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
 			{
 				ClientSecrets = clientSecrets,
-				Scopes = scopes
+				Scopes = Scopes
 			});
 
-			AuthorizationCodeRequestUrl url = credential.CreateAuthorizationCodeRequest(redirect);
+			UserCredential credential = GoogleWebAuthorizationBroker
+				.AuthorizeAsync(clientSecrets, Scopes, "user", CancellationToken.None, null).Result;
+			UserGoogle resut = GetUserGoogle(credential.Flow, credential.Token);
 
-			Process.Start(url.Build().ToString());
-
-			return new UserGoogle();
+			return resut;
 		}
 	}
 }
