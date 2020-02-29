@@ -7,8 +7,9 @@
   <ItemGroup>    
     <PackageReference Include="AzureFunctions.Autofac" Version="2.0.0" />    
     <PackageReference Include="EntityFramework" Version="6.2.0" />    
+    <PackageReference Include="Google.Apis.Core" Version="1.44.0" />    
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.7" />    
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
