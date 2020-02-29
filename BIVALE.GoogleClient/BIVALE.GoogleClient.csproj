@@ -99,12 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BIVALE.Simulator\BIVALE.Simulator.csproj">
-      <Project>{DA19F190-64C2-42F3-87A9-D35E0569CF2D}</Project>
-      <Name>BIVALE.Simulator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
