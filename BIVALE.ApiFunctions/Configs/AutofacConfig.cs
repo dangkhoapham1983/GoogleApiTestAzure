@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using AzureFunctions.Autofac.Configuration;
 using BIVALE.BLL.Interfaces;
-using BIVALE.ApiFunctions.Interfaces;
-using BIVALE.ApiFunctions.Models;
 using BIVALE.BLL.Services;
+using BIVALE.GoogleClient.Interfaces;
+using BIVALE.GoogleClient.Services;
 
 namespace BIVALE.ApiFunctions.Configs
 {
@@ -14,7 +14,8 @@ namespace BIVALE.ApiFunctions.Configs
             DependencyInjection.Initialize(builder =>
             {
 				builder.RegisterType<UserServices>().As<IUserServices>();
-				builder.RegisterType<Dog>().As<IAnimal>();
+				builder.RegisterType<HistoryServices>().As<IHistoryServices>();
+				builder.RegisterType<GoogleServices>().As<IGoogleServices>();
 			});
         }
     }

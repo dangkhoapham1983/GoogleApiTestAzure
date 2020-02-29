@@ -1,22 +1,24 @@
-using BIVALE.ApiFunctions.AnimalsHttpTrigger;
-using BIVALE.ApiFunctions.Interfaces;
-using BIVALE.ApiFunctions.Models;
+using BIVALE.ApiFunctions.HistoryHttpTrigger;
+using BIVALE.BLL.Interfaces;
+using BIVALE.BLL.Services;
+using BIVALE.DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BIVALE.DITests
 {
     [TestClass]
-    public class AnimalNoisesHttpTriggerTests
+    public class HistoryHttpTriggerTests
     {
         [TestMethod]
         public async Task TestShouldBark()
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await AnimalNoisesHttpTrigger.Run(request, traceWriter, new Dog());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices());
 			var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Bark!", content);
         }
@@ -26,7 +28,7 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await AnimalNoisesHttpTrigger.Run(request, traceWriter, new Cat());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices());
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Meow!", content);
         }
@@ -36,9 +38,9 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            Mock<IAnimal> cow = new Mock<IAnimal>();
-            cow.Setup(x => x.MakeNoise()).Returns("Moo!");
-            var response = await AnimalNoisesHttpTrigger.Run(request, traceWriter, cow.Object);
+            Mock<IHistoryServices> cow = new Mock<IHistoryServices>();
+            cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object);
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Moo!", content);
         }

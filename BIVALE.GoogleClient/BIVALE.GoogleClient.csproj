@@ -96,8 +96,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IGoogleService.cs" />
-    <Compile Include="Services\GoogleService.cs" />
+    <Compile Include="Interfaces\IGoogleServices.cs" />
+    <Compile Include="Services\GoogleServices.cs" />
     <Compile Include="UserGoogle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

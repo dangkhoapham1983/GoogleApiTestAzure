@@ -21,14 +21,14 @@ using Google.Apis.PeopleService.v1.Data;
 
 namespace BIVALE.GoogleClient.Services
 {
-	public class GoogleService : IGoogleService
+	public class GoogleServices : IGoogleServices
 	{
 		public async Task<UserGoogle> CodeValidate(string code)
 		{
 			string clientID = "724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com";
 			string clientSecret = "OLaWJI81VkdKlz0qUZfi0ojv";
 			var scopes = new[] { "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
-			string redirect = "http://localhost:7071/api/AnimalNoisesHttpTrigger";
+			string redirect = "http://localhost:7071/api/HistoryHttpTrigger";
 
 			var clientSecrets = new ClientSecrets
 			{
@@ -79,7 +79,7 @@ namespace BIVALE.GoogleClient.Services
 			string clientID = "724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com";
 			string clientSecret = "OLaWJI81VkdKlz0qUZfi0ojv";
 			var scopes = new[] { "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email" };
-			string redirect = "http://localhost:7071/api/AnimalNoisesHttpTrigger";
+			string redirect = "http://localhost:7071/api/HistoryHttpTrigger";
 
 			var clientSecrets = new ClientSecrets
 			{

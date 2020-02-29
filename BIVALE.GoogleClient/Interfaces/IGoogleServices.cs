@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BIVALE.GoogleClient.Interfaces
 {
-	public interface IGoogleService
+	public interface IGoogleServices
 	{
 		UserGoogle Validate();
 
