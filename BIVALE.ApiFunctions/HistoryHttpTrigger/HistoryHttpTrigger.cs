@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Collections.Generic;
 using BIVALE.DTO;
+using BIVALE.GoogleClient.Interfaces;
 
 namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 {
@@ -22,14 +23,13 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
         [FunctionName("History")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequestMessage req, 
                                                           TraceWriter log,
-                                                          [Inject]IHistoryServices historyServices)
+                                                          [Inject]IHistoryServices historyServices, [Inject]IGoogleServices googleServices)
         {
-			var tcs = new TaskCompletionSource<IEnumerable<HistoryDTO>>();
-			log.Info("Received new account request");
+			log.Info("Received new parametters request");
             HttpResponseMessage response = null;
             try
             {
-				log.Info("Getting from database");
+				log.Info("Getting from database history table");
 				await Task.Run(() =>
 				{
 					var myObj = historyServices.GetHistorys();

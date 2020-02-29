@@ -2,6 +2,8 @@ using BIVALE.ApiFunctions.HistoryHttpTrigger;
 using BIVALE.BLL.Interfaces;
 using BIVALE.BLL.Services;
 using BIVALE.DTO;
+using BIVALE.GoogleClient.Interfaces;
+using BIVALE.GoogleClient.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
@@ -18,7 +20,7 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(), new GoogleServices());
 			var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Bark!", content);
         }
@@ -28,7 +30,7 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(), new GoogleServices());
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Meow!", content);
         }
@@ -40,7 +42,9 @@ namespace BIVALE.DITests
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
             Mock<IHistoryServices> cow = new Mock<IHistoryServices>();
             cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
-            var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object);
+			Mock<IGoogleServices> cow1 = new Mock<IGoogleServices>();
+			cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
+			var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object, cow1.Object);
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Moo!", content);
         }
