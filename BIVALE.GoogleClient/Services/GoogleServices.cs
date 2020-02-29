@@ -23,6 +23,7 @@ namespace BIVALE.GoogleClient.Services
 {
 	public class GoogleServices : IGoogleServices
 	{
+
 		public async Task<UserGoogle> CodeValidate(string code)
 		{
 			string clientID = "724435684439-9rp9ipd0abe4255t77ggf2s2e4caprl0.apps.googleusercontent.com";

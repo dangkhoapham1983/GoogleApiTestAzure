@@ -14,6 +14,7 @@ using System.Text;
 using System.Collections.Generic;
 using BIVALE.DTO;
 using BIVALE.GoogleClient.Interfaces;
+using BIVALE.GoogleClient;
 
 namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 {
@@ -26,14 +27,29 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
                                                           [Inject]IHistoryServices historyServices, [Inject]IGoogleServices googleServices)
         {
 			log.Info("Received new parametters request");
-            HttpResponseMessage response = null;
+			
+
+			HttpResponseMessage response = null;
             try
             {
 				log.Info("Getting from database history table");
-				await Task.Run(() =>
+				await Task.Run(async () =>
 				{
-					var myObj = historyServices.GetHistorys();
-					var jsonToReturn = JsonConvert.SerializeObject(myObj);
+					string code = req.GetQueryNameValuePairs()
+					.FirstOrDefault(q => q.Key == "code")
+					.Value;
+					var result = new UserGoogle();
+					if (string.IsNullOrEmpty(code))
+					{
+						result = googleServices.Validate();
+					}
+					else
+					{
+						result = await googleServices.CodeValidate(code);
+					}
+
+					//var myObj = historyServices.GetHistorys();
+					var jsonToReturn = JsonConvert.SerializeObject(result);
 					response = new HttpResponseMessage(HttpStatusCode.OK)
 					{
 						Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
