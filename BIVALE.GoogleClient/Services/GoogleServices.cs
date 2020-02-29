@@ -18,6 +18,8 @@ using System.IO;
 using Google.Apis.Services;
 using Google.Apis.PeopleService.v1;
 using Google.Apis.PeopleService.v1.Data;
+using BIVALE.GoogleClient.Extend;
+using static BIVALE.GoogleClient.Extend.GoogleExtension;
 
 namespace BIVALE.GoogleClient.Services
 {
@@ -106,7 +108,7 @@ namespace BIVALE.GoogleClient.Services
 			return resut;
 		}
 
-		public UserGoogle Validate()
+		public UserGoogle ValidateByWeb()
 		{
 			var clientSecrets = new ClientSecrets
 			{
@@ -125,6 +127,33 @@ namespace BIVALE.GoogleClient.Services
 			UserGoogle resut = GetUserGoogle(credential.Flow, credential.Token);
 
 			return resut;
+		}
+
+		public UserGoogle ValidateByProcess()
+		{
+			var clientSecrets = new ClientSecrets
+			{
+				ClientId = GoogleClientID,
+				ClientSecret = GoogleClientSecret
+			};
+
+			IAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
+			{
+				ClientSecrets = clientSecrets,
+				Scopes = Scopes
+			});
+
+			AuthorizationCodeRequestUrl url = flow.CreateAuthorizationCodeRequest(RedirectURL);
+
+			Process.Start(url.Build().ToString());
+
+			return new UserGoogle();
+		}
+
+		public async Task<User> GetUserInfo(Token token)
+		{
+			GoogleExtension obj = new GoogleExtension();
+			return await obj.GetUserInfo(token);
 		}
 	}
 }

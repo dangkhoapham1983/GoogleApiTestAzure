@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using BIVALE.DTO;
 using BIVALE.GoogleClient.Interfaces;
 using BIVALE.GoogleClient;
+using static BIVALE.GoogleClient.Extend.GoogleExtension;
 
 namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 {
@@ -30,22 +31,50 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 			HttpResponseMessage response = null;
 			try
             {
+				string access_token = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "access_token").Value;
 				string code = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "code").Value;
-				var result = new UserGoogle();
-				if (string.IsNullOrEmpty(code))
+				string date = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "date").Value;
+				string start_time = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "start_time").Value;
+				string end_time = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "end_time").Value;
+				string smart_gateway_id = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "smart_gateway_id").Value;
+				string category = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "category").Value;
+				UserGoogle result = null;
+				User us = null;
+				if(!string.IsNullOrEmpty(access_token))
 				{
-					result = googleServices.Validate();
+					us = await googleServices.GetUserInfo(new Token { AccessToken = access_token });
 				}
 				else
 				{
-					result = await googleServices.CodeValidate(code);
+					if (string.IsNullOrEmpty(code))
+					{
+						result = googleServices.ValidateByProcess();
+					}
+					else
+					{
+						result = await googleServices.CodeValidate(code);
+					}
 				}
+				
 				//var myObj = historyServices.GetHistorys();
-				var jsonToReturn = JsonConvert.SerializeObject(result);
-				response = new HttpResponseMessage(HttpStatusCode.OK)
+				if (result != null)
 				{
-					Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
-				};
+					var jsonToReturn = JsonConvert.SerializeObject(result);
+					response = new HttpResponseMessage(HttpStatusCode.OK)
+					{
+						Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+					};
+				}
+				else
+				{
+					var jsonToReturn = JsonConvert.SerializeObject(us);
+					response = new HttpResponseMessage(HttpStatusCode.OK)
+					{
+						Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+					};
+				}
+
+				
 				//log.Info("Getting from database history table");
 				//await Task.Run(async () =>
 				//{

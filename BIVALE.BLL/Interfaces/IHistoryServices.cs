@@ -6,6 +6,7 @@ namespace BIVALE.BLL.Interfaces
 	public interface IHistoryServices
 	{
 		IEnumerable<HistoryDTO> GetHistorys();
+		IEnumerable<HistoryDTO> GetHistoryByConditions();
 		HistoryDTO GetHistoryByID(int HistoryId);
 		void InsertHistory(HistoryDTO History);
 		void DeleteHistory(int HistoryID);

@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extend\GoogleExtension.cs" />
     <Compile Include="Interfaces\IGoogleServices.cs" />
     <Compile Include="Services\GoogleServices.cs" />
     <Compile Include="UserGoogle.cs" />

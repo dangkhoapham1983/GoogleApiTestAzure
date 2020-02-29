@@ -28,6 +28,11 @@ namespace BIVALE.BLL.Services
 			throw new NotImplementedException();
 		}
 
+		public IEnumerable<HistoryDTO> GetHistoryByConditions()
+		{
+			throw new NotImplementedException();
+		}
+
 		public HistoryDTO GetHistoryByID(int HistoryId)
 		{
 			throw new NotImplementedException();
