@@ -20,6 +20,7 @@ using Google.Apis.PeopleService.v1;
 using Google.Apis.PeopleService.v1.Data;
 using BIVALE.GoogleClient.Extend;
 using static BIVALE.GoogleClient.Extend.GoogleExtension;
+using BIVALE.Extensions.Services;
 
 namespace BIVALE.GoogleClient.Services
 {
@@ -158,7 +159,7 @@ namespace BIVALE.GoogleClient.Services
 
 		public async Task<User> GetUserInfo(Token token)
 		{
-			GoogleExtension obj = new GoogleExtension();
+			GoogleExtension obj = DependencyInjector.Retrieve<GoogleExtension>();
 			return await obj.GetUserInfo(token);
 		}
 	}

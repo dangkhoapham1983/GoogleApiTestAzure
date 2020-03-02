@@ -110,5 +110,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIVALE.Extensions\BIVALE.Extensions.csproj">
+      <Project>{cd59def1-88ab-4b2a-a36e-38b91821bd91}</Project>
+      <Name>BIVALE.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
