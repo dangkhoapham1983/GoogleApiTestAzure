@@ -9,9 +9,9 @@ namespace BIVALE.GoogleClient.Interfaces
 {
 	public interface IGoogleServices
 	{
-		UserGoogle ValidateByWeb();
+		Task<UserGoogle> ValidateByWeb();
 
-		UserGoogle ValidateByProcess();
+		Task<UserGoogle> ValidateByProcess();
 
 		Task<UserGoogle> CodeValidate(string code);
 

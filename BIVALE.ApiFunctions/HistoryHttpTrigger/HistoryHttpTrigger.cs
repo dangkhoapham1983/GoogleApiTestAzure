@@ -48,7 +48,7 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 				{
 					if (string.IsNullOrEmpty(code))
 					{
-						result = googleServices.ValidateByProcess();
+						result = await googleServices.ValidateByWeb();
 					}
 					else
 					{

@@ -108,7 +108,7 @@ namespace BIVALE.GoogleClient.Services
 			return resut;
 		}
 
-		public UserGoogle ValidateByWeb()
+		public async Task<UserGoogle> ValidateByWeb()
 		{
 			var clientSecrets = new ClientSecrets
 			{
@@ -122,14 +122,20 @@ namespace BIVALE.GoogleClient.Services
 				Scopes = Scopes
 			});
 
-			UserCredential credential = GoogleWebAuthorizationBroker
-				.AuthorizeAsync(clientSecrets, Scopes, "user", CancellationToken.None, null).Result;
+			UserCredential credential = await GoogleWebAuthorizationBroker
+				.AuthorizeAsync(clientSecrets, Scopes, "user", CancellationToken.None, null);
+			var isExpired = credential.Token.IsExpired(Google.Apis.Util.SystemClock.Default);
+			if(isExpired)
+			{
+				var refreshResult = credential.RefreshTokenAsync(CancellationToken.None).Result;
+			}
+
 			UserGoogle resut = GetUserGoogle(credential.Flow, credential.Token);
 
 			return resut;
 		}
 
-		public UserGoogle ValidateByProcess()
+		public async Task<UserGoogle> ValidateByProcess()
 		{
 			var clientSecrets = new ClientSecrets
 			{
