@@ -2,7 +2,9 @@
 using BIVALE.BLL.Interfaces;
 using BIVALE.DAL.Models;
 using BIVALE.DTO;
+using BIVALE.Extensions.Services;
 using System.Collections.Generic;
+using static BIVALE.BLL.Mapping.ConfigurationMapper;
 
 namespace BIVALE.BLL.Mapping
 {
@@ -10,91 +12,51 @@ namespace BIVALE.BLL.Mapping
 	{
 		public History Map(HistoryDTO obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			History target = mapper.Map<History>(obj);
-			return target;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<History>(obj);
 		}
 
 		public HistoryDTO Map(History obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<HistoryDTO>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<HistoryDTO>(obj);
 		}
 
 		public IEnumerable<History> MapList(IEnumerable<HistoryDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<IEnumerable<History>>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<IEnumerable<History>>(obj);
 		}
 
 		public IEnumerable<HistoryDTO> MapList(IEnumerable<History> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<IEnumerable<HistoryDTO>>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<IEnumerable<HistoryDTO>>(obj);
 		}
 
 		public IList<History> MapList(IList<HistoryDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<IList<History>>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<IList<History>>(obj);
 		}
 
 		public IList<HistoryDTO> MapList(IList<History> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
 			var result = mapper.Map<IList<HistoryDTO>>(obj);
 			return result;
 		}
 
 		public ICollection<History> MapList(ICollection<HistoryDTO> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<ICollection<History>>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<ICollection<History>>(obj);
 		}
 
 		public ICollection<HistoryDTO> MapList(ICollection<History> obj)
 		{
-			var config = new MapperConfiguration(cfg => {
-				cfg.AllowNullCollections = true;
-				cfg.AddProfile(new MappingProfile());
-			});
-			var mapper = config.CreateMapper();
-			var result = mapper.Map<ICollection<HistoryDTO>>(obj);
-			return result;
+			IMapper mapper = DependencyInjector.Retrieve<ConfigurationMapper>().Configuration();
+			return mapper.Map<ICollection<HistoryDTO>>(obj);
 		}
 	}
 }

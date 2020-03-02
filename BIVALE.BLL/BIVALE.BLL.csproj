@@ -68,6 +68,7 @@
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IHistoryServices.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
+    <Compile Include="Mapping\ConfigurationMapper.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
     <Compile Include="Mapping\HistoryMapper.cs" />
     <Compile Include="Mapping\NodePermissionMapper.cs" />
