@@ -84,7 +84,7 @@ namespace BIVALE.GoogleClient.Services
 			return resut;
 		}
 
-		private static UserGoogle GetUserGoogle(IAuthorizationCodeFlow flow, TokenResponse token)
+		private UserGoogle GetUserGoogle(IAuthorizationCodeFlow flow, TokenResponse token)
 		{
 			var resut = new UserGoogle();
 			if (token != null)
