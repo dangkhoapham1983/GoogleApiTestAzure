@@ -73,6 +73,12 @@ namespace BIVALE.GoogleClient.Services
 			});
 
 			TokenResponse token = await flow.ExchangeCodeForTokenAsync("me", code, RedirectURL, CancellationToken.None);
+			var isExpired = token.IsExpired(Google.Apis.Util.SystemClock.Default);
+			if (isExpired)
+			{
+				var refreshResult = flow.RefreshTokenAsync("me", token.RefreshToken, CancellationToken.None).Result;
+			}
+
 			UserGoogle resut = GetUserGoogle(flow, token);
 
 			return resut;
