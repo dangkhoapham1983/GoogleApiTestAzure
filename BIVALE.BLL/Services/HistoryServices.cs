@@ -29,7 +29,7 @@ namespace BIVALE.BLL.Services
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<HistoryDTO> GetHistoryByConditions()
+		public IEnumerable<HistoryDTO> GetHistoryByConditions(string email)
 		{
 			throw new NotImplementedException();
 		}

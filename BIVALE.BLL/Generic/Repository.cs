@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace BIVALE.BLL.Generic
 {
@@ -103,5 +104,41 @@ namespace BIVALE.BLL.Generic
             dbSet.AddOrUpdate(entityToUpsert);
         }
 
-    }
+		public Task<TEntity> GetById(int id) => context.Set<TEntity>().FindAsync(id);
+
+		public Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+			=> dbSet.FirstOrDefaultAsync(predicate);
+
+		public async Task Add(TEntity entity)
+		{
+			context.Set<TEntity>().Add(entity);
+			await context.SaveChangesAsync();
+		}
+
+		public Task UpdateEntity(TEntity entity)
+		{
+			context.Entry(entity).State = EntityState.Modified;
+			return context.SaveChangesAsync();
+		}
+
+		public Task Remove(TEntity entity)
+		{
+			context.Set<TEntity>().Remove(entity);
+			return context.SaveChangesAsync();
+		}
+
+		public async Task<IEnumerable<TEntity>> GetAll()
+		{
+			return await context.Set<TEntity>().ToListAsync();
+		}
+
+		public async Task<IEnumerable<TEntity>> GetWhere(Expression<Func<TEntity, bool>> predicate)
+		{
+			return await context.Set<TEntity>().Where(predicate).ToListAsync();
+		}
+
+		public Task<int> CountAll() => context.Set<TEntity>().CountAsync();
+
+		public Task<int> CountWhere(Expression<Func<TEntity, bool>> predicate) => context.Set<TEntity>().CountAsync(predicate);
+	}
 }

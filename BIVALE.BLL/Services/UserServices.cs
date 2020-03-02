@@ -29,6 +29,14 @@ namespace BIVALE.BLL.Services
 			throw new NotImplementedException();
 		}
 
+		public UserDTO GetUserByEmail(string email)
+		{
+			var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
+			var targetEntity = UserRepository.FirstOrDefault(p => p.MAIL_ADDRESS == email);
+			var targetDTO = objUserMapper.Map(targetEntity.Result);
+			return targetDTO;
+		}
+
 		public UserDTO GetUserByID(int userId)
 		{
 			throw new NotImplementedException();
