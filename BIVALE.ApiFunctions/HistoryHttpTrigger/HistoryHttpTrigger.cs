@@ -56,7 +56,7 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 					}
 				}
 				
-				//var myObj = historyServices.GetHistorys();
+				var myObj = historyServices.GetHistorys();
 				if (result != null)
 				{
 					var jsonToReturn = JsonConvert.SerializeObject(result);
@@ -74,7 +74,7 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
 					};
 				}
 
-				
+
 				//log.Info("Getting from database history table");
 				//await Task.Run(async () =>
 				//{

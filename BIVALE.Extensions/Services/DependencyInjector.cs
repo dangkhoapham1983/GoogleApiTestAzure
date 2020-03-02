@@ -1,7 +1,7 @@
 ﻿using Unity;
 using Unity.Lifetime;
 
-namespace BIVALE.BLL.Services
+namespace BIVALE.Extensions.Services
 {
 	public static class DependencyInjector
 	{
