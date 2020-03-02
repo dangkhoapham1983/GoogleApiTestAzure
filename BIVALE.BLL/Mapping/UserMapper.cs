@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using BIVALE.BLL.Interfaces;
-using BIVALE.BLL.Services;
 using BIVALE.DAL.Models;
 using BIVALE.DTO;
+using System.Collections.Generic;
 
 namespace BIVALE.BLL.Mapping
 {
-	public class UserMapper : IMapper<UserDTO, User>
+    public class UserMapper : IMapper<UserDTO, User>
 	{
 		public User Map(UserDTO obj)
 		{

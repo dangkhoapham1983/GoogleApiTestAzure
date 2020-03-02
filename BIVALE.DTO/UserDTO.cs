@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BIVALE.DTO
 {
@@ -33,5 +34,6 @@ namespace BIVALE.DTO
 		public Nullable<int> BUILDING_MANAGEMENT_SERVICE { get; set; }
 		public Nullable<int> BUILDING_MANAGEMENT_USER_TYPE { get; set; }
 		public Nullable<int> ANNOUNCEMENT_NOTIFICATION { get; set; }
+		public ICollection<NodePermissionDTO> NodePermissions { get; set; }
 	}
 }

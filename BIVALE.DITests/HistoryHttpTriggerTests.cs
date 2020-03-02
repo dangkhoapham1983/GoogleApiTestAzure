@@ -20,7 +20,7 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(), new GoogleServices());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(), null, new GoogleServices());
 			var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Bark!", content);
         }
@@ -30,7 +30,7 @@ namespace BIVALE.DITests
         {
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
-            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(), new GoogleServices());
+            var response = await HistoryHttpTrigger.Run(request, traceWriter, new HistoryServices(),null, new GoogleServices());
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Meow!", content);
         }
@@ -44,7 +44,7 @@ namespace BIVALE.DITests
             cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
 			Mock<IGoogleServices> cow1 = new Mock<IGoogleServices>();
 			cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
-			var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object, cow1.Object);
+			var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object, null, cow1.Object);
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Moo!", content);
         }

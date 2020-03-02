@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using BIVALE.BLL.Interfaces;
-using BIVALE.BLL.Services;
 using BIVALE.DAL.Models;
 using BIVALE.DTO;
+using System.Collections.Generic;
 
 namespace BIVALE.BLL.Mapping
 {
-	public class HistoryMapper : IMapper<HistoryDTO, History>
+    public class HistoryMapper : IMapper<HistoryDTO, History>
 	{
 		public History Map(HistoryDTO obj)
 		{
