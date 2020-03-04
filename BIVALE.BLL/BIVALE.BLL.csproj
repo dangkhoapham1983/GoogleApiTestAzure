@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IHistoryServices.cs" />
+    <Compile Include="Interfaces\INodePermissionService.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
     <Compile Include="Mapping\ConfigurationMapper.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Mapping\NodePermissionMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
     <Compile Include="Services\HistoryServices.cs" />
+    <Compile Include="Services\NodePermissionService.cs" />
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

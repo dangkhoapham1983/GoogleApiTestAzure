@@ -6,6 +6,7 @@ using BIVALE.DTO;
 using BIVALE.Extensions.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BIVALE.BLL.Services
 {
@@ -29,11 +30,6 @@ namespace BIVALE.BLL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<HistoryDTO> GetHistoryByConditions()
-        {
-            throw new NotImplementedException();
-        }
-
         public HistoryDTO GetHistoryByID(int HistoryId)
         {
             throw new NotImplementedException();
@@ -47,48 +43,65 @@ namespace BIVALE.BLL.Services
             return result;
         }
 
-        public IEnumerable<HistoryDTO> GetHistoriesByConditions(UserDTO user, ICollection<NodePermissionDTO> userNodePermissions,
+        public IEnumerable<HistoryDTO> GetHistoriesByConditions(UserDTO user, UserDTO parentUser,
             string date, string startTime, string endTime, string smartGatewayId, string category)
         {
-            // Bad Request
-            if (user == null || userNodePermissions == null || String.IsNullOrEmpty(date)
+            if (user == null || String.IsNullOrEmpty(date)
                 || String.IsNullOrEmpty(startTime) || String.IsNullOrEmpty(endTime)
                 || String.IsNullOrEmpty(smartGatewayId))
             {
-                return null;
+                return null; // Bad Request
             }
 
-            var objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
+            var startInt = this.ConvStdTimeToSec(startTime);
+            var endInt = this.ConvStdTimeToSec(endTime);
 
-            var test = HistoryRepository.Get();
+            if (startInt == -1 || endInt == -1)
+            {
+                return null; // Bad Request
+            }
+
+
+            var userNodePermissions = user.NodePermissions.ToList().FindAll(obj => obj.PERMISSION_OWNER_TYPE == 1);
+            // Get parent's permissions
+            if (parentUser != null)
+            {
+                var parentNodePermission = parentUser.NodePermissions.ToList().FindAll(p => p.PERMISSION_OWNER_TYPE == 2);
+                userNodePermissions.AddRange(parentNodePermission);
+            }
+
+            if (userNodePermissions.Count == 0)
+            {
+                return null; // User has no permission
+            }
+
             var target = HistoryRepository.Get(obj =>
                 obj.USER_ID == user.Id && // User ID
                 obj.SMART_GATEWAY_ID.ToString().Equals(smartGatewayId) && // Smart Gateway
-                obj.DATE.Equals(date)  // Date 
-                //(String.IsNullOrEmpty(category) ? true : obj.CATEGORY.ToString().Equals(category))
+                obj.DATE.Equals(date) && // Date 
+                (String.IsNullOrEmpty(category) ? true : obj.CATEGORY.ToString().Equals(category))
             );
             var filterTarget = new List<History>();
             foreach (History hist in target)
             {
-                // Check Time
+                // Check Time 
                 var timeInt = this.ConvStdTimeToSec(hist.TIME_OF_DATE_TIME);
-                var startInt = this.ConvStdTimeToSec(startTime);
-                var endInt = this.ConvStdTimeToSec(endTime);
-                if (timeInt > endInt || timeInt < startInt)
+                if (timeInt > endInt || timeInt < startInt || timeInt == -1)
                 {
                     continue;
                 }
 
                 // Check Node Paths
-                if (this.CheckNodePermissionInUserPermissions(userNodePermissions, hist.PERSON_NODE_PATH)
-                    && this.CheckNodePermissionInUserPermissions(userNodePermissions, hist.CREDENTIAL_NODE_PATH)
-                    && this.CheckNodePermissionInUserPermissions(userNodePermissions, hist.EQUIPMENT_POINT_NODE_PATH)
-                    && this.CheckNodePermissionInUserPermissions(userNodePermissions, hist.USER_OPERATION_NODE_PATH))
+                if (this.CheckUserHasPermission(userNodePermissions, hist.PERSON_NODE_PATH)
+                    && this.CheckUserHasPermission(userNodePermissions, hist.CREDENTIAL_NODE_PATH)
+                    && this.CheckUserHasPermission(userNodePermissions, hist.EQUIPMENT_POINT_NODE_PATH)
+                    && this.CheckUserHasPermission(userNodePermissions, hist.USER_OPERATION_NODE_PATH))
                 {
                     filterTarget.Add(hist);
                 }
             }
 
+            var objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
             var result = objHistoryMapper.MapList(filterTarget);
             return result;
         }
@@ -107,22 +120,45 @@ namespace BIVALE.BLL.Services
             throw new NotImplementedException();
         }
 
+        #region Private Methods
+
+        /// <summary>
+        /// Convert standard time hh:mm:ss to seconds
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         private int ConvStdTimeToSec(string time)
         {
-            var chars = time.Split(':');
-            return int.Parse(chars[0]) * 3600 + int.Parse(chars[1]) * 60 + int.Parse(chars[2]);
+            if (String.IsNullOrEmpty(time))
+            {
+                return -1;
+            }
+            var timeParams = time.Split(':');
+            if (timeParams.Length != 3)
+            {
+                return -1;
+            }
+            return int.Parse(timeParams[0]) * 3600 + int.Parse(timeParams[1]) * 60 + int.Parse(timeParams[2]);
         }
 
-        private bool CheckNodePermissionInUserPermissions(ICollection<NodePermissionDTO> userNodePermissions, string nodePath)
+        /// <summary>
+        /// Check whether user has a specific permission
+        /// </summary>
+        /// <param name="userPermissions"></param>
+        /// <param name="requiredPermission"></param>
+        /// <returns></returns>
+        private bool CheckUserHasPermission(ICollection<NodePermissionDTO> userPermissions, string requiredPermission)
         {
-            foreach (NodePermissionDTO item in userNodePermissions)
+            foreach (NodePermissionDTO item in userPermissions)
             {
-                if (item.PERMISSION_OWNER_TYPE == 1 && item.NODE_PATH.StartsWith(nodePath))
+                if (item.NODE_PATH.StartsWith(requiredPermission))
                 {
                     return true;
                 }
             }
             return false;
         }
+
+        #endregion
     }
 }

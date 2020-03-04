@@ -31,33 +31,21 @@ namespace BIVALE.BLL.Services
 
         public UserDTO GetUserByID(int userId)
         {
-            throw new NotImplementedException();
+            var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
+            var targetEntity = UserRepository.FirstOrDefault(p => p.Id == userId);
+            var targetDTO = objUserMapper.Map(targetEntity.Result);
+            return targetDTO;
         }
-        public UserDTO GetUserByEmail(string userEmail)
+
+        public UserDTO GetUserByEmailAddress(string email)
         {
             var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
-            var target = UserRepository.Get(x => x.MAIL_ADDRESS.Equals(userEmail));
-            var result = objUserMapper.MapList(target);
-
-            using (var enumerator = result.GetEnumerator())
-            {
-                if (enumerator.MoveNext())
-                {
-                    return enumerator.Current;
-                }
-            }
-            return null;
+            var targetEntity = UserRepository.FirstOrDefault(p => p.MAIL_ADDRESS == email);
+            var targetDTO = objUserMapper.Map(targetEntity.Result);
+            return targetDTO;
         }
 
-		public UserDTO GetUserByEmailAddress(string email)
-		{
-			var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
-			var targetEntity = UserRepository.FirstOrDefault(p => p.MAIL_ADDRESS == email);
-			var targetDTO = objUserMapper.Map(targetEntity.Result);
-			return targetDTO;
-		}
-
-		public IEnumerable<UserDTO> GetUsers()
+        public IEnumerable<UserDTO> GetUsers()
         {
             var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
             var target = UserRepository.Get();

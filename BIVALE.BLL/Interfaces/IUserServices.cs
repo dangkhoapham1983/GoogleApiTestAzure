@@ -7,7 +7,6 @@ namespace BIVALE.BLL.Interfaces
 	{
 		IEnumerable<UserDTO> GetUsers();
 		UserDTO GetUserByID(int userId);
-        UserDTO GetUserByEmail(string userEmail);
 		UserDTO GetUserByEmailAddress(string email);
 		void InsertUser(UserDTO user);
 		void DeleteUser(int userID);

@@ -1,20 +1,18 @@
+using AzureFunctions.Autofac;
+using BIVALE.ApiFunctions.Configs;
+using BIVALE.BLL.Interfaces;
+using BIVALE.GoogleClient;
+using BIVALE.GoogleClient.Interfaces;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using AzureFunctions.Autofac;
-using BIVALE.BLL.Interfaces;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using BIVALE.ApiFunctions.Configs;
-using Newtonsoft.Json;
 using System.Text;
-using System.Collections.Generic;
-using BIVALE.DTO;
-using BIVALE.GoogleClient.Interfaces;
-using BIVALE.GoogleClient;
+using System.Threading.Tasks;
 using static BIVALE.GoogleClient.Extend.GoogleExtension;
 
 namespace BIVALE.ApiFunctions.HistoryHttpTrigger
@@ -62,7 +60,7 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
                 {
                     // Get History 
                     log.Info("Getting from database");
-                    var userObj = userServices.GetUserByEmail(result.Email);
+                    var userObj = userServices.GetUserByEmailAddress(result.Email);
                     if (userObj == null)
                     {
                         response = new HttpResponseMessage(HttpStatusCode.BadRequest)
@@ -72,7 +70,8 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
                     }
                     else
                     {
-                        var myObj = historyServices.GetHistoriesByConditions(userObj, userObj.NodePermissions,
+                        var parentUser = userServices.GetUserByID(userObj.PARENT_ID ?? default(int));
+                        var myObj = historyServices.GetHistoriesByConditions(userObj, parentUser,
                             date, start_time, end_time, smart_gateway_id, category);
                         var jsonToReturn = JsonConvert.SerializeObject(myObj);
                         response = new HttpResponseMessage(HttpStatusCode.OK)
