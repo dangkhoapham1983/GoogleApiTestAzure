@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateResultDTO.cs" />
     <Compile Include="HistoryDTO.cs" />
+    <Compile Include="HistoryResultDTO.cs" />
     <Compile Include="NodePermissionDTO.cs" />
+    <Compile Include="TimeResultDTO.cs" />
     <Compile Include="UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

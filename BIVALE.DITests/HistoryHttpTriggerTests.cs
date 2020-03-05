@@ -41,9 +41,9 @@ namespace BIVALE.DITests
             HttpRequestMessage request = TestHelpers.CreateGetRequest();
             TraceWriterStub traceWriter = new TraceWriterStub(System.Diagnostics.TraceLevel.Info);
             Mock<IHistoryServices> cow = new Mock<IHistoryServices>();
-            cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
+            cow.Setup(x => x.GetHistories()).Returns(new List<HistoryDTO>());
 			Mock<IGoogleServices> cow1 = new Mock<IGoogleServices>();
-			cow.Setup(x => x.GetHistorys()).Returns(new List<HistoryDTO>());
+			cow.Setup(x => x.GetHistories()).Returns(new List<HistoryDTO>());
 			var response = await HistoryHttpTrigger.Run(request, traceWriter, cow.Object, null, cow1.Object);
             var content = await response.Content.ReadAsAsync<string>();
             Assert.AreEqual("Moo!", content);

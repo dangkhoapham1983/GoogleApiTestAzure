@@ -25,17 +25,7 @@ namespace BIVALE.BLL.Services
             }
         }
 
-        public void DeleteHistory(int HistoryID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public HistoryDTO GetHistoryByID(int HistoryId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<HistoryDTO> GetHistorys()
+        public IEnumerable<HistoryDTO> GetHistories()
         {
             var objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
             var target = HistoryRepository.Get();
@@ -43,24 +33,23 @@ namespace BIVALE.BLL.Services
             return result;
         }
 
-        public IEnumerable<HistoryDTO> GetHistoriesByConditions(UserDTO user, UserDTO parentUser,
-            string date, string startTime, string endTime, string smartGatewayId, string category)
+        public HistoryResultDTO GetHistoriesByConditions(UserDTO user, UserDTO parentUser, string startDate,
+            string endDate, string startTime, string endTime, string smartGatewayId, string category)
         {
-            if (user == null || String.IsNullOrEmpty(date)
+            if (user == null || String.IsNullOrEmpty(startDate) || String.IsNullOrEmpty(endDate)
                 || String.IsNullOrEmpty(startTime) || String.IsNullOrEmpty(endTime)
                 || String.IsNullOrEmpty(smartGatewayId))
             {
                 return null; // Bad Request
             }
 
-            var startInt = this.ConvStdTimeToSec(startTime);
-            var endInt = this.ConvStdTimeToSec(endTime);
+            var startDateTime = this.ConvStdDateToDateTime(startDate, startTime);
+            var endDateTime = this.ConvStdDateToDateTime(endDate, endTime);
 
-            if (startInt == -1 || endInt == -1)
+            if (startDateTime == null || endDateTime == null)
             {
                 return null; // Bad Request
             }
-
 
             var userNodePermissions = user.NodePermissions.ToList().FindAll(obj => obj.PERMISSION_OWNER_TYPE == 1);
             // Get parent's permissions
@@ -78,15 +67,14 @@ namespace BIVALE.BLL.Services
             var target = HistoryRepository.Get(obj =>
                 obj.USER_ID == user.Id && // User ID
                 obj.SMART_GATEWAY_ID.ToString().Equals(smartGatewayId) && // Smart Gateway
-                obj.DATE.Equals(date) && // Date 
-                (String.IsNullOrEmpty(category) ? true : obj.CATEGORY.ToString().Equals(category))
+                (String.IsNullOrEmpty(category) ? true : obj.CATEGORY.ToString().Equals(category)) // Category (optional)
             );
             var filterTarget = new List<History>();
             foreach (History hist in target)
             {
                 // Check Time 
-                var timeInt = this.ConvStdTimeToSec(hist.TIME_OF_DATE_TIME);
-                if (timeInt > endInt || timeInt < startInt || timeInt == -1)
+                var datetime = this.ConvStdDateToDateTime(hist.DATE, hist.TIME_OF_DATE_TIME);
+                if (datetime == null || DateTime.Compare(datetime.Value, startDateTime.Value) < 0 || DateTime.Compare(datetime.Value, endDateTime.Value) > 0)
                 {
                     continue;
                 }
@@ -102,43 +90,82 @@ namespace BIVALE.BLL.Services
             }
 
             var objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
-            var result = objHistoryMapper.MapList(filterTarget);
+            var historyDTOs = objHistoryMapper.MapList(filterTarget);
+            var result = new HistoryResultDTO()
+            {
+                smart_gateway_id = int.Parse(smartGatewayId),
+                dates = new List<DateResultDTO>()
+            };
+            Dictionary<string, ICollection<TimeResultDTO>> dateDict = new Dictionary<string, ICollection<TimeResultDTO>>();
+
+            foreach (var obj in historyDTOs)
+            {
+                if (!dateDict.ContainsKey(obj.DATE))
+                {
+                    dateDict.Add(obj.DATE, new List<TimeResultDTO>());
+                }
+                dateDict[obj.DATE].Add(new TimeResultDTO()
+                {
+                    card_face_no = obj.CARD_FACE_NO,
+                    category = obj.CATEGORY,
+                    equipment_name1 = obj.EQUIPMENT_NAME1,
+                    equipment_name2 = obj.EQUIPMENT_NAME2,
+                    event_message = obj.EVENT_MESSAGE,
+                    event_text = obj.EVENT_TEXT,
+                    management_code = obj.MANAGEMENT_CODE,
+                    person_name = obj.PERSON_NAME,
+                    site_name = obj.SITE_NAME,
+                    time_of_date_time = obj.TIME_OF_DATE_TIME
+                });
+            }
+
+            foreach (var obj in dateDict)
+            {
+                result.dates.Add(new DateResultDTO()
+                {
+                    date = obj.Key,
+                    times = obj.Value
+                });
+            }
+
             return result;
-        }
-
-        public void InsertHistory(HistoryDTO History)
-        {
-            HistoryMapper obj = DependencyInjector.Retrieve<HistoryMapper>();
-            var targetEntity = obj.Map(History);
-            var targetDTO = obj.Map(targetEntity);
-            HistoryRepository.Insert(targetEntity);
-            Save();
-        }
-
-        public void UpdateHistory(HistoryDTO History)
-        {
-            throw new NotImplementedException();
         }
 
         #region Private Methods
 
         /// <summary>
-        /// Convert standard time hh:mm:ss to seconds
+        /// Convert datetime string to datetime object
         /// </summary>
+        /// <param name="date"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        private int ConvStdTimeToSec(string time)
+        private DateTime? ConvStdDateToDateTime(string date, string time)
         {
-            if (String.IsNullOrEmpty(time))
+            if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time))
             {
-                return -1;
+                return null;
             }
+
+            var dateParams = date.Split('/');
             var timeParams = time.Split(':');
-            if (timeParams.Length != 3)
+
+            if (dateParams.Length != 3 || timeParams.Length != 3)
             {
-                return -1;
+                return null;
             }
-            return int.Parse(timeParams[0]) * 3600 + int.Parse(timeParams[1]) * 60 + int.Parse(timeParams[2]);
+
+            // Date
+            var yearInt = int.Parse(dateParams[0]);
+            var monthInt = int.Parse(dateParams[1]);
+            var dayInt = int.Parse(dateParams[2]);
+
+            // Time
+            var hourInt = int.Parse(timeParams[0]);
+            var minuteInt = int.Parse(timeParams[1]);
+            var secondInt = int.Parse(timeParams[2]);
+
+            var dateObj = new DateTime(yearInt, monthInt, dayInt, hourInt, minuteInt, secondInt);
+            return dateObj;
         }
 
         /// <summary>

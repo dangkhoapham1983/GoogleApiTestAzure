@@ -4,8 +4,6 @@ using BIVALE.BLL.Mapping;
 using BIVALE.DAL.Models;
 using BIVALE.DTO;
 using BIVALE.Extensions.Services;
-using System;
-using System.Collections.Generic;
 
 namespace BIVALE.BLL.Services
 {
@@ -24,11 +22,6 @@ namespace BIVALE.BLL.Services
             }
         }
 
-        public void DeleteUser(int userID)
-        {
-            throw new NotImplementedException();
-        }
-
         public UserDTO GetUserByID(int userId)
         {
             var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
@@ -43,28 +36,6 @@ namespace BIVALE.BLL.Services
             var targetEntity = UserRepository.FirstOrDefault(p => p.MAIL_ADDRESS == email);
             var targetDTO = objUserMapper.Map(targetEntity.Result);
             return targetDTO;
-        }
-
-        public IEnumerable<UserDTO> GetUsers()
-        {
-            var objUserMapper = DependencyInjector.Retrieve<UserMapper>();
-            var target = UserRepository.Get();
-            var result = objUserMapper.MapList(target);
-            return result;
-        }
-
-        public void InsertUser(UserDTO user)
-        {
-            UserMapper obj = DependencyInjector.Retrieve<UserMapper>();
-            var targetEntity = obj.Map(user);
-            var targetDTO = obj.Map(targetEntity);
-            UserRepository.Insert(targetEntity);
-            Save();
-        }
-
-        public void UpdateUser(UserDTO user)
-        {
-            throw new NotImplementedException();
         }
     }
 }
