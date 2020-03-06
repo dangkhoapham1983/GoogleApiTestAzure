@@ -1,10 +1,11 @@
-﻿using BIVALE.DTO;
+﻿using BIVALE.BLL.Enum;
+using BIVALE.DTO;
 using System.Collections.Generic;
 
 namespace BIVALE.BLL.Interfaces
 {
     public interface INodePermissionService
     {
-        IEnumerable<NodePermissionDTO> GetNodePermissionsByUser(int userId);
+        IEnumerable<NodePermissionDTO> GetNodePermissionsByUser(int userId, PermissionOwnerType ownerType);
     }
 }

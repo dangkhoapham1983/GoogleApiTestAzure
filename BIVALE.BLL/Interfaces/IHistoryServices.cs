@@ -7,8 +7,8 @@ namespace BIVALE.BLL.Interfaces
     {
         IEnumerable<HistoryDTO> GetHistories();
 
-        HistoryResultDTO GetHistoriesByConditions(UserDTO user, UserDTO parentUser,
-            string startDate, string endDate, string startTime, string endTime,
-            string smartGatewayId, string category);
+        HistoryResultDTO GetHistoriesByConditions(UserDTO user, string startDate,
+            string endDate, string startTime, string endTime, string smartGatewayId,
+            string category);
     }
 }

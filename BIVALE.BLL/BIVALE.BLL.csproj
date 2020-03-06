@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\PermissionOwnerType.cs" />
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IHistoryServices.cs" />
     <Compile Include="Interfaces\INodePermissionService.cs" />

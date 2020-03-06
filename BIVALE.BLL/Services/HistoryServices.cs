@@ -1,4 +1,5 @@
-﻿using BIVALE.BLL.Generic;
+﻿using BIVALE.BLL.Enum;
+using BIVALE.BLL.Generic;
 using BIVALE.BLL.Interfaces;
 using BIVALE.BLL.Mapping;
 using BIVALE.DAL.Models;
@@ -13,6 +14,8 @@ namespace BIVALE.BLL.Services
     public class HistoryServices : UnitOfWork, IHistoryServices
     {
         private IRepository<History> historyRepository;
+        private INodePermissionService nodePermissionService;
+
         public IRepository<History> HistoryRepository
         {
             get
@@ -24,6 +27,17 @@ namespace BIVALE.BLL.Services
                 return historyRepository;
             }
         }
+        public INodePermissionService NodePermissionService
+        {
+            get
+            {
+                if (nodePermissionService == null)
+                {
+                    nodePermissionService = DependencyInjector.Retrieve<INodePermissionService>();
+                }
+                return nodePermissionService;
+            }
+        }
 
         public IEnumerable<HistoryDTO> GetHistories()
         {
@@ -33,7 +47,7 @@ namespace BIVALE.BLL.Services
             return result;
         }
 
-        public HistoryResultDTO GetHistoriesByConditions(UserDTO user, UserDTO parentUser, string startDate,
+        public HistoryResultDTO GetHistoriesByConditions(UserDTO user, string startDate,
             string endDate, string startTime, string endTime, string smartGatewayId, string category)
         {
             if (user == null || String.IsNullOrEmpty(startDate) || String.IsNullOrEmpty(endDate)
@@ -51,12 +65,14 @@ namespace BIVALE.BLL.Services
                 return null; // Bad Request
             }
 
-            var userNodePermissions = user.NodePermissions.ToList().FindAll(obj => obj.PERMISSION_OWNER_TYPE == 1);
+            List<String> userNodePermissions = user.NodePermissions.ToList().FindAll(p => p.PERMISSION_OWNER_TYPE == (int)PermissionOwnerType.USER).Select(p => p.NODE_PATH).ToList();
+
             // Get parent's permissions
-            if (parentUser != null)
+            if (user.PARENT_ID != null)
             {
-                var parentNodePermission = parentUser.NodePermissions.ToList().FindAll(p => p.PERMISSION_OWNER_TYPE == 2);
+                var parentNodePermission = NodePermissionService.GetNodePermissionsByUser(user.PARENT_ID.Value, PermissionOwnerType.USER_GR).Select(p => p.NODE_PATH);
                 userNodePermissions.AddRange(parentNodePermission);
+                userNodePermissions = userNodePermissions.Distinct().ToList();
             }
 
             if (userNodePermissions.Count == 0)
@@ -64,12 +80,24 @@ namespace BIVALE.BLL.Services
                 return null; // User has no permission
             }
 
-            var target = HistoryRepository.Get(obj =>
+            IEnumerable<History> target = HistoryRepository.Get(obj =>
                 obj.USER_ID == user.Id && // User ID
                 obj.SMART_GATEWAY_ID.ToString().Equals(smartGatewayId) && // Smart Gateway
                 (String.IsNullOrEmpty(category) ? true : obj.CATEGORY.ToString().Equals(category)) // Category (optional)
-            );
-            var filterTarget = new List<History>();
+
+                //// Time
+                //&& DateTime.Compare(this.ConvStdDateToDateTime(obj.DATE, obj.TIME_OF_DATE_TIME).Value, startDateTime.Value) >= 0
+                //&& DateTime.Compare(this.ConvStdDateToDateTime(obj.DATE, obj.TIME_OF_DATE_TIME).Value, endDateTime.Value) <= 0
+
+                //// Node Permissions
+                //&& this.CheckUserHasPermission(userNodePermissions, obj.PERSON_NODE_PATH)
+                //&& this.CheckUserHasPermission(userNodePermissions, obj.CREDENTIAL_NODE_PATH)
+                //&& this.CheckUserHasPermission(userNodePermissions, obj.EQUIPMENT_POINT_NODE_PATH)
+                //&& this.CheckUserHasPermission(userNodePermissions, obj.USER_OPERATION_NODE_PATH)
+
+                );
+
+            List<History> filterTarget = new List<History>();
             foreach (History hist in target)
             {
                 // Check Time 
@@ -89,9 +117,9 @@ namespace BIVALE.BLL.Services
                 }
             }
 
-            var objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
-            var historyDTOs = objHistoryMapper.MapList(filterTarget);
-            var result = new HistoryResultDTO()
+            HistoryMapper objHistoryMapper = DependencyInjector.Retrieve<HistoryMapper>();
+            IList<HistoryDTO> historyDTOs = objHistoryMapper.MapList(filterTarget);
+            HistoryResultDTO result = new HistoryResultDTO()
             {
                 smart_gateway_id = int.Parse(smartGatewayId),
                 dates = new List<DateResultDTO>()
@@ -174,11 +202,11 @@ namespace BIVALE.BLL.Services
         /// <param name="userPermissions"></param>
         /// <param name="requiredPermission"></param>
         /// <returns></returns>
-        private bool CheckUserHasPermission(ICollection<NodePermissionDTO> userPermissions, string requiredPermission)
+        private bool CheckUserHasPermission(ICollection<string> userPermissions, string requiredPermission)
         {
-            foreach (NodePermissionDTO item in userPermissions)
+            foreach (var item in userPermissions)
             {
-                if (item.NODE_PATH.StartsWith(requiredPermission))
+                if (item.StartsWith(requiredPermission))
                 {
                     return true;
                 }

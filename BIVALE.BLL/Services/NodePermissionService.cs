@@ -1,4 +1,5 @@
-﻿using BIVALE.BLL.Generic;
+﻿using BIVALE.BLL.Enum;
+using BIVALE.BLL.Generic;
 using BIVALE.BLL.Interfaces;
 using BIVALE.BLL.Mapping;
 using BIVALE.DAL.Models;
@@ -22,10 +23,10 @@ namespace BIVALE.BLL.Services
                 return userRepository;
             }
         }
-        IEnumerable<NodePermissionDTO> INodePermissionService.GetNodePermissionsByUser(int userId)
+        IEnumerable<NodePermissionDTO> INodePermissionService.GetNodePermissionsByUser(int userId, PermissionOwnerType ownerType)
         {
             var objUserMapper = DependencyInjector.Retrieve<NodePermissionMapper>();
-            var target = NodePermissionRepository.Get(p => p.PERMISSION_OWNER_ID == userId);
+            var target = NodePermissionRepository.Get(p => p.PERMISSION_OWNER_ID == userId && p.PERMISSION_OWNER_TYPE == (int)ownerType);
             var result = objUserMapper.MapList(target);
             return result;
         }

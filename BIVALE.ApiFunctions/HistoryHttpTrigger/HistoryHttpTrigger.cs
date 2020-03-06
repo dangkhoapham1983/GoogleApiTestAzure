@@ -1,7 +1,6 @@
 using AzureFunctions.Autofac;
 using BIVALE.ApiFunctions.Configs;
 using BIVALE.BLL.Interfaces;
-using BIVALE.GoogleClient;
 using BIVALE.GoogleClient.Interfaces;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -32,7 +31,6 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
             try
             {
                 string access_token = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "access_token").Value;
-                string code = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "code").Value;
                 string start_date = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "start_date").Value;
                 string end_date = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "end_date").Value;
                 string start_time = req.GetQueryNameValuePairs().FirstOrDefault(q => q.Key == "start_time").Value;
@@ -60,8 +58,7 @@ namespace BIVALE.ApiFunctions.HistoryHttpTrigger
                     }
                     else
                     {
-                        var parentUser = userServices.GetUserByID(userObj.PARENT_ID ?? default(int));
-                        var myObj = historyServices.GetHistoriesByConditions(userObj, parentUser,
+                        var myObj = historyServices.GetHistoriesByConditions(userObj, 
                             start_date, end_date, start_time, end_time, smart_gateway_id, category);
                         var jsonToReturn = JsonConvert.SerializeObject(myObj);
                         response = new HttpResponseMessage(HttpStatusCode.OK)
